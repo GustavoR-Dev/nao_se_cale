@@ -1,0 +1,2001 @@
+﻿<!DOCTYPE html>
+<html class="scroll-smooth" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NÃO SE CALE! — Rafael Elian | Experiência Editorial Oficial</title>
+
+    <!-- SEO & Metadata -->
+    <meta name="description"
+        content="Eles precisam ouvir também. Conheça o livro 'Não Se Cale!' de Rafael Elian. Uma reflexão visceral sobre fé, experiências e transformação inspirada em Marcos 11:23." />
+    <meta name="author" content="Rafael Elian" />
+    <meta property="og:title" content="NÃO SE CALE! — Rafael Elian" />
+    <meta property="og:description"
+        content="Eles precisam ouvir também. 15 minutos mudaram tudo. Edição oficial de colecionador." />
+    <meta property="og:type" content="book" />
+    <meta property="og:image" content="raw_files/mockup_nao_se_cale.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <!-- Tailwind Config based strictly on Design System 6 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'stone-50': '#fafaf9',
+                        'stone-100': '#f5f5f4',
+                        'stone-200': '#e7e5e4',
+                        'stone-300': '#d6d3d1',
+                        'stone-400': '#a8a29e',
+                        'stone-500': '#78716c',
+                        'stone-600': '#57534e',
+                        'stone-800': '#292524',
+                        'stone-900': '#1c1917',
+                        'acid': '#ccff00',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    letterSpacing: {
+                        'tightest': '-0.06em',
+                        'tighter': '-0.04em',
+                        'tight': '-0.02em',
+                        'super-wide': '0.25em',
+                        'ultra-wide': '0.35em'
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'spin-beam': 'spin 2.5s linear infinite',
+                        'shimmer': 'shimmer 1.8s infinite',
+                        'pulse-subtle': 'pulseSubtle 2.5s ease-in-out infinite',
+                        'book-float': 'bookFloat 6.5s ease-in-out infinite',
+                        'price-pulse': 'pricePulse 2.8s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        shimmer: {
+                            'from': { transform: 'translateX(-100%) skewX(-15deg)' },
+                            'to': { transform: 'translateX(200%) skewX(-15deg)' }
+                        },
+                        pulseSubtle: {
+                            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+                            '50%': { opacity: '1', transform: 'scale(1.03)' }
+                        },
+                        bookFloat: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-16px)' }
+                        },
+                        pricePulse: {
+                            '0%, 100%': { boxShadow: '0 0 0 0 rgba(204, 255, 0, 0.35)' },
+                            '50%': { boxShadow: '0 0 28px 6px rgba(204, 255, 0, 0.22)' }
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* ========================================================
+           DESIGN SYSTEM 6 CORE FOUNDATIONS & UTILITIES
+        ======================================================== */
+        :root {
+            --bg-base: #EAEAE5;
+            --stone-900: #1c1917;
+            --acid-accent: #ccff00;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            color: #1C1C1C;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Architectural Grid Pattern (Design System 6) */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        }
+
+        /* Outline Display Typography (Design System 6) */
+        .transparent-text-outline {
+            -webkit-text-stroke: 1.5px rgba(28, 28, 28, 0.85);
+            color: transparent;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Glass Panels */
+        .glass-panel {
+            background: rgba(234, 234, 229, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(28, 25, 23, 0.15);
+        }
+
+        /* Flashlight/Glow Effect (Design System 6) */
+        .flashlight-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flashlight-card::before {
+            content: "";
+            position: absolute;
+            inset: 0px;
+            background: radial-gradient(650px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                    rgba(255, 255, 255, 0.6),
+                    transparent 45%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 2;
+            mix-blend-mode: soft-light;
+        }
+
+        .flashlight-card:hover::before {
+            opacity: 1;
+        }
+
+        /* 3D Transform Utilities (Design System 6) */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .transform-style-preserve-3d {
+            transform-style: preserve-3d;
+        }
+
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+
+        /* Reveal Base Classes (Design System 6) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(1.5rem);
+            filter: blur(10px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0px);
+        }
+
+        /* Text Reveal Wrapper (com respiro vertical para acentos tipográficos) */
+        .text-reveal-wrapper {
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: bottom;
+            padding-top: 0.28em;
+            margin-top: -0.28em;
+            padding-bottom: 0.06em;
+            margin-bottom: -0.06em;
+        }
+
+        .text-reveal-content {
+            transform: translateY(115%);
+            opacity: 0;
+            filter: blur(8px);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease, filter 1.2s ease;
+            display: block;
+        }
+
+        .reveal-active .text-reveal-content {
+            transform: translateY(0);
+            opacity: 1;
+            filter: blur(0px);
+        }
+
+        /* Marquee from Design System 6 */
+        .marquee-container {
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .marquee-content {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-around;
+            min-width: 100%;
+            animation: marquee 35s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Custom Scrollbar Hide */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Delay helpers (Design System 6) */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-500 { transition-delay: 0.5s; }
+        .delay-700 { transition-delay: 0.7s; }
+
+        /* Book mockup float wrapper */
+        .book-float-stage {
+            animation: bookFloat 6.5s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        /* Soft-fade the mockup edges so its white box never shows */
+        .book-img {
+            -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent), linear-gradient(to bottom, transparent, #000 5%, #000 95%, transparent);
+            -webkit-mask-composite: source-in;
+            mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent), linear-gradient(to bottom, transparent, #000 5%, #000 95%, transparent);
+            mask-composite: intersect;
+        }
+
+        /* Promo price shine sweep */
+        .price-shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-shine::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, transparent 35%, rgba(204, 255, 0, 0.28) 50%, transparent 65%);
+            transform: translateX(-120%);
+            animation: priceShine 3.6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes priceShine {
+            0%, 55% { transform: translateX(-120%); }
+            80%, 100% { transform: translateX(120%); }
+        }
+
+        /* ===== Author section ===== */
+        .author-photo-clip {
+            clip-path: inset(100% 0 0 0 round 1rem);
+            transition: clip-path 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .author-stage.active .author-photo-clip { clip-path: inset(0 0 0 0 round 1rem); }
+
+        .author-parallax {
+            transform: translate3d(calc(var(--px, 0) * -14px), calc(var(--py, 0) * -14px), 0);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .author-photo-img {
+            transform: scale(1.3);
+            transition: transform 2.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .author-stage.active .author-photo-img { transform: scale(1.04); }
+        #author-card:hover .author-photo-img { transform: scale(1.1); transition-duration: 1.2s; }
+
+        .author-line { width: 0; transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.9s; }
+        .author-stage.active .author-line { width: 4rem; }
+
+        .author-scan { top: 0; opacity: 0; }
+        .author-stage.active .author-scan { animation: authorScan 5.5s ease-in-out 1.6s infinite; }
+        @keyframes authorScan {
+            0% { top: 4%; opacity: 0; }
+            10% { opacity: 0.9; }
+            50% { top: 96%; opacity: 0.9; }
+            60%, 100% { top: 96%; opacity: 0; }
+        }
+
+        .author-seal { transform: scale(0) rotate(-90deg); transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1s; }
+        .author-stage.active .author-seal { transform: scale(1) rotate(0deg); }
+        .author-seal:hover { transform: scale(1.08) rotate(6deg) !important; transition-delay: 0s; transition-duration: 0.5s; }
+
+        .author-chip {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.4rem 0.9rem; border-radius: 9999px;
+            border: 1px solid rgba(28, 25, 23, 0.2);
+            background: rgba(255, 255, 255, 0.6);
+            font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.12em; color: #1c1917;
+            transition: background 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
+        }
+        .author-chip::before { content: ""; width: 6px; height: 6px; border-radius: 9999px; background: #ccff00; box-shadow: 0 0 0 1px #1c1917; }
+        .author-chip:hover { background: #ccff00; border-color: #1c1917; transform: translateY(-2px); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .author-photo-clip { clip-path: none !important; }
+            .author-photo-img { transform: none !important; }
+            .author-line { width: 4rem !important; }
+            .author-seal { transform: none !important; }
+            .author-scan { display: none; }
+        }
+
+        /* ===== FAQ ===== */
+        .faq-bigq { transform: translateY(40px) rotate(8deg); opacity: 0; transition: transform 1.8s cubic-bezier(0.16,1,0.3,1), opacity 1.8s ease; }
+        .faq-bigq.active { opacity: 0.4; transform: translateY(0) rotate(0deg); }
+        @keyframes faqBob { 0%,100% { translate: 0 0; } 50% { translate: 0 -14px; } }
+        .faq-bigq.active { animation: faqBob 8s ease-in-out 1.8s infinite; }
+
+        .faq-item {
+            position: relative; border-radius: 1rem;
+            background: rgba(255,255,255,0.72); border: 1px solid rgba(28,25,23,0.14);
+            box-shadow: 0 1px 2px rgba(28,25,23,0.04);
+            transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1), background-color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease, color 0.6s ease;
+        }
+        .faq-item.active:hover:not(.is-open) { transform: translateX(6px); border-color: rgba(28,25,23,0.4); background: #fff; }
+        .faq-item.is-open { background: #1c1917; border-color: #1c1917; color: #fff; box-shadow: 0 25px 50px -12px rgba(28,25,23,0.35); }
+
+        .faq-trigger { position: relative; z-index: 3; display: flex; align-items: center; gap: 1rem; width: 100%; padding: 1.25rem 1.5rem; text-align: left; cursor: pointer; background: none; border: 0; color: inherit; }
+        .faq-trigger:focus-visible { outline: 2px solid #ccff00; outline-offset: -4px; border-radius: 1rem; }
+        .faq-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #a8a29e; transition: color 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+        .faq-item.is-open .faq-num { color: #ccff00; transform: translateX(4px); }
+        .faq-q { flex: 1; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; }
+        @media (min-width: 640px) { .faq-q { font-size: 1.2rem; } }
+
+        .faq-icon { position: relative; flex-shrink: 0; width: 2.25rem; height: 2.25rem; border-radius: 9999px; border: 1px solid rgba(28,25,23,0.25); transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .faq-icon i { position: absolute; left: 50%; top: 50%; width: 0.85rem; height: 2px; margin: -1px 0 0 -0.425rem; background: #1c1917; border-radius: 2px; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1), background-color 0.4s ease; }
+        .faq-icon i:last-child { transform: rotate(90deg); }
+        .faq-item:hover .faq-icon { border-color: #1c1917; }
+        .faq-item.is-open .faq-icon { background: #ccff00; border-color: #ccff00; transform: rotate(180deg); }
+        .faq-item.is-open .faq-icon i:last-child { transform: rotate(0deg); }
+
+        .faq-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.8s cubic-bezier(0.16,1,0.3,1); position: relative; z-index: 3; }
+        .faq-item.is-open .faq-panel { grid-template-rows: 1fr; }
+        .faq-panel-inner { overflow: hidden; min-height: 0; }
+        .faq-panel-inner p { margin: 0; padding: 0 1.5rem 1.6rem calc(1.5rem + 11px + 1rem + 11px); max-width: 44rem; font-size: 0.95rem; line-height: 1.7; color: #d6d3d1; opacity: 0; transform: translateY(14px); filter: blur(4px); transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1), filter 0.5s ease; }
+        .faq-item.is-open .faq-panel-inner p { opacity: 1; transform: translateY(0); filter: blur(0); transition-delay: 0.2s; }
+        @media (max-width: 639px) { .faq-panel-inner p { padding-left: 1.5rem; } }
+
+        .faq-mark { color: inherit; text-decoration: none; padding: 0 0.2em; border-radius: 0.2em; background: linear-gradient(#ccff00,#ccff00) no-repeat left center / 0% 100%; transition: background-size 0.9s cubic-bezier(0.16,1,0.3,1), color 0.3s ease; }
+        .faq-item.is-open .faq-mark { background-size: 100% 100%; color: #1c1917; transition-delay: 0.55s; }
+        a.faq-mark { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+        .faq-bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: #ccff00; transform: scaleX(0); transform-origin: left; transition: transform 0.9s cubic-bezier(0.16,1,0.3,1); z-index: 4; border-radius: 0 0 1rem 1rem; }
+        .faq-item.is-open .faq-bar { transform: scaleX(1); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .faq-bigq { opacity: 0.4 !important; transform: none !important; animation: none !important; }
+            .faq-panel, .faq-panel-inner p, .faq-mark, .faq-bar, .faq-icon, .faq-icon i { transition: none !important; }
+        }
+
+        /* ===== Final CTA ===== */
+        .cta-rev { animation-direction: reverse; }
+        .cta-scan { background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.035) 0 1px, transparent 1px 4px); mix-blend-mode: overlay; }
+        .cta-spot { background: radial-gradient(520px circle at var(--cx, 50%) var(--cy, 50%), rgba(204,255,0,0.16), transparent 60%); opacity: 0; transition: opacity 0.6s ease; mix-blend-mode: screen; }
+        .cta-section:hover .cta-spot { opacity: 1; }
+
+        .cta-corner { position: absolute; width: 1.5rem; height: 1.5rem; border-color: #ccff00; opacity: 0; transform: scale(1.8); transition: opacity 1s ease 0.6s, transform 1.2s cubic-bezier(0.16,1,0.3,1) 0.6s; }
+        .cta-hud.on .cta-corner { opacity: 0.9; transform: scale(1); }
+        .cta-hud > div { opacity: 0; transition: opacity 1s ease 1s; }
+        .cta-hud.on > div { opacity: 1; }
+
+        .cta-fill {
+            color: transparent;
+            -webkit-text-stroke: 1.5px #ccff00;
+            background: linear-gradient(#ccff00, #ccff00) no-repeat 0 100% / 0% 100%;
+            -webkit-background-clip: text; background-clip: text;
+            transition: transform 1.2s cubic-bezier(0.16,1,0.3,1), opacity 1.2s ease, filter 1.2s ease, background-size 1s cubic-bezier(0.16,1,0.3,1);
+        }
+        .cta-section:has(.cta-main:hover) .cta-fill { background-size: 100% 100%; }
+
+        .cta-magnet { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); will-change: transform; }
+
+        .cta-chip { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.55rem 1rem; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.14); background: rgba(28,25,23,0.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: border-color 0.4s ease, transform 0.4s ease, color 0.4s ease; }
+        .cta-chip:hover { border-color: #ccff00; transform: translateY(-2px); color: #fff; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cta-corner, .cta-hud > div { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .cta-fill { transition: none !important; }
+        }
+
+        /* Reduced Motion Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            ::before,
+            ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .reveal,
+            .text-reveal-content {
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+            }
+
+            .book-float-stage,
+            .price-shine::after {
+                animation: none !important;
+            }
+        }
+    
+        /* Letter fade (headlines 02 / 03) */
+        .sf-word { display: inline-block; white-space: nowrap; }
+        .sf-char { display: inline-block; will-change: opacity, transform, filter; }
+        @media (prefers-reduced-motion: reduce) {
+            .sf-char { opacity: 1 !important; transform: none !important; filter: none !important; }
+        }
+    </style>
+</head>
+
+<body class="selection:bg-stone-900 selection:text-[#ccff00] min-h-screen">
+
+    <!-- ========================================================
+         STICKY HEADER (Minimal Editorial Navigation)
+    ======================================================== -->
+    <header id="main-header"
+        class="fixed top-0 left-0 w-full z-50 border-b border-stone-300/60 bg-[#EAEAE5]/80 backdrop-blur-md transition-all duration-500">
+        <div class="max-w-[1520px] mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
+
+            <!-- Left: Brand / Author -->
+            <a href="#"
+                class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 rounded-md">
+                <div
+                    class="w-8 h-8 rounded-full bg-stone-900 flex items-center justify-center text-white transition-transform duration-500 group-hover:rotate-45">
+                    <iconify-icon icon="solar:book-bookmark-minimalistic-bold"
+                        class="text-base text-[#ccff00]"></iconify-icon>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xs font-mono font-bold tracking-tight uppercase text-stone-900">RAFAEL
+                        ELIAN</span>
+                    <span class="text-[10px] font-mono tracking-tight uppercase text-stone-500">OBRA EDITORIAL</span>
+                </div>
+            </a>
+
+            <!-- Center: Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8" aria-label="Navegação Principal">
+                <a href="#hero-pin-container"
+                    class="text-xs font-mono uppercase tracking-tight text-stone-900 hover:text-stone-600 transition-colors">O
+                    Livro</a>
+                <a href="#meta-impressao"
+                    class="text-xs font-mono uppercase tracking-tight text-stone-600 hover:text-stone-900 transition-colors">Meta</a>
+                <a href="#proposito"
+                    class="text-xs font-mono uppercase tracking-tight text-stone-600 hover:text-stone-900 transition-colors">A
+                    Mensagem</a>
+                <a href="#autor"
+                    class="text-xs font-mono uppercase tracking-tight text-stone-600 hover:text-stone-900 transition-colors">Autor</a>
+                <a href="#faq"
+                    class="text-xs font-mono uppercase tracking-tight text-stone-600 hover:text-stone-900 transition-colors">FAQ</a>
+                <a href="#comprar"
+                    class="text-xs font-mono uppercase tracking-tight text-stone-600 hover:text-stone-900 transition-colors">Adquirir</a>
+            </nav>
+
+            <!-- Right: Badge & Quick CTA -->
+            <div class="flex items-center gap-4">
+                <span
+                    class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 bg-stone-900 text-[#ccff00] rounded-full text-[11px] font-mono font-semibold uppercase tracking-tight">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span>
+                    2ª Edição
+                </span>
+
+                <a href="#comprar"
+                    class="px-5 py-2.5 bg-stone-900 text-white hover:bg-stone-800 text-xs font-mono font-bold tracking-tight uppercase rounded-full transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-900">
+                    Garantir Livro
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================================
+         HERO SECTION (PINNED 100vw x 100vh WITH VIDEO SCRUB)
+    ======================================================== -->
+    <div id="hero-scroll-track" class="relative w-full">
+
+        <!-- PINNED CONTAINER -->
+        <section id="hero-pin-container"
+            class="relative w-full h-screen overflow-hidden bg-[#EAEAE5] flex items-center">
+
+            <!-- Background Architectural Grid -->
+            <div class="absolute inset-0 bg-grid pointer-events-none opacity-25 z-0"></div>
+
+            <!-- 1. BACKGROUND VIDEO (ENQUADRADO PERFEITAMENTE, SEM CORTES, CORES PURAS) -->
+            <div
+                class="absolute inset-0 w-full h-full z-10 flex items-center justify-center md:justify-end pointer-events-none overflow-hidden md:pr-10 lg:pr-20">
+                <video id="hero-video"
+                    class="h-[84vh] max-h-[800px] w-auto max-w-[95vw] md:max-w-[65vw] object-contain object-center md:object-right pointer-events-none select-none"
+                    src="raw_files/nao_se_cale.mp4" preload="auto" muted playsinline tabindex="-1" aria-hidden="true">
+                </video>
+            </div>
+
+            <!-- 2. MAIN HERO CONTENT CONTAINER (COMPACTO, EDITORIAL, ALINHADO À REFERÊNCIA) -->
+            <div
+                class="relative z-30 w-full max-w-[1520px] mx-auto px-6 md:px-12 lg:px-16 pt-12 flex items-center justify-between h-full pointer-events-none">
+
+                <!-- LEFT CONTENT BLOCK: COMPACT, EDITORIAL, POWERFUL -->
+                <div id="hero-text-block" class="w-full max-w-[460px] flex flex-col justify-center pointer-events-auto">
+
+                    <!-- Eyebrow Badges (Pré-Venda & Missão em Andamento) -->
+                    <div id="hero-eyebrow" class="flex flex-wrap items-center gap-2 mb-3.5 opacity-0">
+                        <span
+                            class="px-2.5 py-0.5 border border-stone-900/20 rounded-full text-[11px] font-mono uppercase bg-white/80 backdrop-blur-md text-stone-900 font-bold tracking-tight shadow-sm">
+                            PRÉ-VENDA
+                        </span>
+                        <span
+                            class="px-2.5 py-0.5 bg-[#ccff00] text-stone-900 rounded-full text-[11px] font-mono font-bold tracking-tight uppercase border border-black/10">
+                            MISSÃO EM ANDAMENTO
+                        </span>
+                    </div>
+
+                    <!-- Compact Headline with Outline & Contrast Styling (Referência: A caneta mais tecnológica do mundo) -->
+                    <div id="hero-headline-group" class="mb-3.5">
+                        <h1
+                            class="text-5xl sm:text-6xl md:text-6xl lg:text-[4.75rem] font-bold uppercase tracking-tight leading-[0.98] text-stone-900">
+                            <span class="block text-reveal-wrapper">
+                                <span class="text-reveal-content">NÃO</span>
+                            </span>
+                            <span class="block text-reveal-wrapper">
+                                <span
+                                    class="text-reveal-content transparent-text-outline hover:text-stone-900 transition-colors duration-500">SE
+                                    CALE!</span>
+                            </span>
+                        </h1>
+                    </div>
+
+                    <!-- Compact Editorial Description & Pré-Venda Disclaimer -->
+                    <div id="hero-description" class="mb-5 max-w-[440px] opacity-0">
+                        <p class="text-sm sm:text-base text-stone-800 font-normal leading-snug">
+                            Garanta seu exemplar de "Não se cale!" e ajude a completar a cota de impressão. Ao comprar,
+                            você se torna investidor de uma missão que vai muito além de um livro.
+                        </p>
+                        <p
+                            class="mt-2.5 text-xs text-stone-500 font-normal leading-relaxed border-l-2 border-stone-300 pl-2.5">
+                            Trata-se de uma pré-venda. Não há previsão de entrega. O livro só será impresso após
+                            atingirmos 100% da meta, e o envio/retirada ocorrerá após o lançamento.
+                        </p>
+                    </div>
+
+                    <!-- CTA BUTTONS (Compactos e Alinhados à Referência) -->
+                    <div id="hero-cta-group" class="flex flex-wrap items-center gap-3.5 opacity-0">
+
+                        <!-- Primary Gemini Beam Button (From DS6) -->
+                        <div
+                            class="group relative inline-flex items-center justify-center overflow-hidden rounded-full p-[1.5px] cursor-pointer shadow-md hover:shadow-lg transition-all duration-300">
+                            <!-- Spinning Conic Beam Border -->
+                            <span
+                                class="absolute inset-[-1000%] animate-spin-beam bg-[conic-gradient(from_0deg,transparent_0_330deg,#ccff00_360deg)]"></span>
+
+                            <!-- Inner Button Container -->
+                            <a href="#comprar"
+                                class="relative flex h-full w-full items-center rounded-full bg-stone-900 px-6 py-3.5 transition-all duration-300 group-hover:bg-stone-800 text-white">
+                                <span class="absolute inset-0 overflow-hidden rounded-full">
+                                    <span
+                                        class="absolute top-0 left-0 h-full w-full -skew-x-12 bg-gradient-to-r from-transparent via-white/15 to-transparent opacity-0 group-hover:animate-shimmer group-hover:opacity-100"></span>
+                                </span>
+                                <span class="relative flex items-center gap-2">
+                                    <span
+                                        class="text-xs font-mono font-bold uppercase tracking-normal text-[#ccff00]">COMPRAR
+                                        AGORA</span>
+                                    <iconify-icon icon="solar:arrow-right-linear"
+                                        class="text-sm text-[#ccff00] transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
+                                </span>
+                            </a>
+                        </div>
+
+                        <!-- Secondary Frosted Pill Button (From Reference Layout) -->
+                        <a href="#meta-impressao"
+                            class="glass-pill px-6 py-3.5 rounded-full text-xs font-mono font-bold uppercase tracking-normal text-stone-900 hover:bg-white hover:border-stone-900 transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-md group">
+                            <span>Explorar</span>
+                            <iconify-icon icon="solar:arrow-down-linear"
+                                class="text-sm transition-transform duration-300 group-hover:translate-y-0.5"></iconify-icon>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT EDITORIAL SCENE & PROGRESS INDICATOR (Reference Layout & DS6) -->
+                <div id="hero-right-indicator"
+                    class="hidden md:flex flex-col items-end gap-2.5 pointer-events-auto opacity-0">
+                    <div class="flex items-center gap-2.5">
+                        <span id="scene-counter" class="text-xs font-mono font-bold tracking-tight text-stone-900">01 /
+                            03</span>
+                        <div class="w-1.5 h-1.5 rounded-full bg-[#ccff00] border border-stone-900/30"></div>
+                    </div>
+
+                    <!-- Vertical Track with Animated Progress Line -->
+                    <div class="w-[2px] h-24 bg-stone-300/70 relative rounded-full overflow-hidden">
+                        <div id="vertical-progress-bar"
+                            class="w-full bg-stone-900 h-0 absolute top-0 left-0 transition-all duration-75"></div>
+                    </div>
+
+                    <div class="flex flex-col items-end">
+                        <span class="text-[10px] font-mono tracking-tight text-stone-500">VIDEO FRAME</span>
+                        <span id="video-time-display" class="text-[11px] font-mono font-semibold text-stone-800">0.00s /
+                            4.20s</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BOTTOM CENTER SCROLL INDICATOR (Reference Layout) -->
+            <div id="hero-scroll-indicator"
+                class="absolute bottom-5 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-1.5 pointer-events-none opacity-0 transition-opacity duration-500">
+                <span class="text-[10px] font-mono tracking-wider uppercase text-stone-500 font-semibold">
+                    SCROLL TO CONTROL
+                </span>
+                <div class="w-[1.5px] h-5 bg-stone-400 relative overflow-hidden rounded-full">
+                    <div class="w-full h-full bg-stone-900 -translate-y-full animate-[shimmer_1.8s_infinite]"></div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- ========================================================
+         SEGUNDA DOBRA: BARRA DE META EM DESTAQUE (PERSUASÃO MÁXIMA)
+         Inspirada no Design System 6 e na referência visual
+    ======================================================== -->
+    <section id="meta-impressao"
+        class="relative z-20 border-t border-stone-300/80 bg-[#EAEAE5] py-12 md:py-16 overflow-hidden">
+
+        <!-- Architectural Grid Background (Design System 6) -->
+        <div class="absolute inset-0 bg-grid pointer-events-none opacity-30 z-0"></div>
+
+        <div class="relative z-10 max-w-[1520px] mx-auto px-6 md:px-12 lg:px-16">
+            <!-- Two-column layout: text left, progress card right -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+
+                <!-- LEFT: Eyebrow + Headline + Description -->
+                <div class="lg:col-span-5 flex flex-col gap-4">
+                    <!-- Eyebrow matching 03 / O PROPOSITO -->
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500">02 / META DE
+                            IMPRESS&#xC3;O</span>
+                        <span class="w-12 h-[1px] bg-stone-300"></span>
+                    </div>
+                    <h2 data-split-fade
+                        class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-stone-900 leading-[0.98]">
+                        Cada exemplar antecipa<br>a impress&#xE3;o de<br>uma mensagem.
+                    </h2>
+                    <p class="text-stone-600 text-sm sm:text-base leading-relaxed max-w-sm">
+                        Para que a impress&#xE3;o seja iniciada, precisamos atingir 100% da cota coletiva. Ao
+                        apoiar, voc&#xEA; viabiliza a entrega f&#xED;sica para todos.
+                    </p>
+                </div>
+
+                <!-- RIGHT: Progress Card -->
+                <div class="lg:col-span-7">
+                    <div class="relative bg-white/95 backdrop-blur-xl border border-stone-300/80 rounded-3xl shadow-xl p-6 sm:p-8 flashlight-card overflow-hidden group hover:shadow-2xl transition-all duration-500"
+                        onmousemove="const rect = this.getBoundingClientRect(); this.style.setProperty('--mouse-x', `${event.clientX - rect.left}px`); this.style.setProperty('--mouse-y', `${event.clientY - rect.top}px`);">
+
+                        <!-- Top Row: Icon + Meta Title + Live Status -->
+                        <div class="flex items-center justify-between gap-4 mb-6">
+                            <div class="flex items-center gap-3.5">
+                                <div
+                                    class="w-11 h-11 rounded-2xl bg-[#ccff00]/25 text-stone-900 flex items-center justify-center text-xl border border-[#ccff00]/50 shadow-sm shrink-0">
+                                    <iconify-icon icon="solar:printer-minimalistic-bold"
+                                        class="text-xl text-stone-900"></iconify-icon>
+                                </div>
+                                <h3 class="text-base sm:text-lg font-bold text-stone-900 tracking-tight leading-snug">
+                                    Meta de Impress&#xE3;o &#x2014; 2&#xAA; Edi&#xE7;&#xE3;o
+                                </h3>
+                            </div>
+                            <!-- Status Pill -->
+                            <span
+                                class="inline-flex items-center gap-1.5 px-3 py-1 bg-stone-900 text-[#ccff00] rounded-full text-xs font-mono font-bold uppercase tracking-tight shadow-sm shrink-0">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-ping"></span>
+                                Em Andamento
+                            </span>
+                        </div>
+
+                        <!-- Progress Track -->
+                        <div class="relative my-5">
+                            <div
+                                class="w-full h-4 sm:h-5 bg-stone-100 border border-stone-200 rounded-full overflow-hidden relative shadow-inner p-[1.5px]">
+                                <div id="meta-progress-fill"
+                                    class="h-full bg-stone-900 rounded-full relative overflow-hidden transition-all duration-1000 ease-out"
+                                    style="width: 10%;">
+                                    <div
+                                        class="absolute inset-0 w-full h-full -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-[shimmer_2s_infinite]">
+                                    </div>
+                                    <div class="absolute right-0 top-0 bottom-0 w-2 bg-[#ccff00]"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Row: Metric + CTA -->
+                        <div class="flex flex-wrap items-center justify-between gap-4 pt-1">
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-xl sm:text-2xl font-black text-stone-900 tracking-tight">10%</span>
+                                <span class="text-xs sm:text-sm font-bold text-stone-800">da meta de impress&#xE3;o
+                                    atingida</span>
+                            </div>
+                            <a href="#comprar"
+                                class="px-5 py-2.5 bg-stone-900 text-[#ccff00] hover:bg-stone-800 rounded-full text-xs font-mono font-bold uppercase tracking-tight transition-all duration-300 shadow-md hover:shadow-xl flex items-center gap-2 group">
+                                <span>Garantir o meu</span>
+                                <iconify-icon icon="solar:arrow-right-linear"
+                                    class="text-sm text-[#ccff00] transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOATING PERSISTENT PROGRESS PILL (Discreta e sempre acessível conforme scroll) -->
+    <aside id="floating-meta-bar"
+        class="fixed bottom-6 right-6 sm:right-10 z-50 bg-stone-900 text-white pl-4 pr-3 py-2.5 rounded-full shadow-2xl border border-stone-700/60 backdrop-blur-md flex items-center gap-3.5 transition-all duration-500 translate-y-28 opacity-0 pointer-events-none"
+        aria-label="Progresso da Meta">
+        <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#ccff00] animate-pulse"></span>
+            <span class="text-xs font-mono font-bold text-white tracking-tight">META: <span
+                    class="text-[#ccff00]">10%</span></span>
+        </div>
+        <div class="w-16 h-1.5 bg-stone-700 rounded-full overflow-hidden relative">
+            <div class="h-full bg-[#ccff00] w-[10%]"></div>
+        </div>
+        <a href="#comprar"
+            class="px-3.5 py-1.5 bg-[#ccff00] text-stone-900 hover:bg-white rounded-full text-[11px] font-mono font-bold uppercase tracking-tight transition-colors shadow-sm flex items-center gap-1">
+            <span>Garantir</span>
+            <iconify-icon icon="solar:arrow-right-linear" class="text-xs"></iconify-icon>
+        </a>
+    </aside>
+
+    <!-- ========================================================
+         SECTION 3: EDITORIAL CONTINUATION (WHEN HERO UNPINS)
+         Deep dive into the book identity, questions & 3D mockup
+    ======================================================== -->
+    <!-- ========================================================
+         SECTION 03: O PROPOSITO
+    ======================================================== -->
+    <section id="proposito" class="relative z-20 border-t border-stone-300 bg-[#EAEAE5] py-14 md:py-16 scroll-mt-24">
+        <div class="max-w-[1520px] mx-auto px-6 md:px-12 lg:px-16">
+
+            <!-- Section Header -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end pb-8 border-b border-stone-300/80">
+                <div class="md:col-span-8">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500">03 / O
+                            PROP&#xD3;SITO</span>
+                        <span class="w-12 h-[1px] bg-stone-300"></span>
+                    </div>
+                    <h2
+                        data-split-fade class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter uppercase text-stone-900 leading-[0.95]">
+                        O que &#xE9;, de fato, a f&#xE9;? <br />
+                        <span class="text-stone-400 font-light">E por que ela sustenta tantas pessoas?</span>
+                    </h2>
+                </div>
+                <div class="md:col-span-4 md:text-right">
+                    <p class="text-xs font-mono uppercase tracking-widest text-stone-500">
+                        MARCOS 11:23 &#x2022; ESTE LIVRO N&#xC3O FALA APENAS SOBRE CRER. FALA SOBRE N&#xC3O DUVIDAR.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Main Feature Grid: 3D Mockup + Editorial + Pré-venda -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mt-8 items-stretch">
+
+                <!-- Left: Amplified Book Showcase -->
+                <div class="lg:col-span-7 perspective-1000 reveal flex flex-col">
+                    <div id="book-3d-card"
+                        class="relative w-full flex-1 min-h-[420px] sm:min-h-[480px] lg:min-h-0 bg-white/75 backdrop-blur-xl border border-white/70 rounded-2xl shadow-xl px-3 sm:px-4 pt-14 pb-4 flex flex-col justify-center flashlight-card group overflow-hidden"
+                        onmousemove="const rect = this.getBoundingClientRect(); this.style.setProperty('--mouse-x', `${event.clientX - rect.left}px`); this.style.setProperty('--mouse-y', `${event.clientY - rect.top}px`);">
+
+                        <div class="pointer-events-none absolute inset-0 bg-grid opacity-40"></div>
+                        <div
+                            class="pointer-events-none absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-[78%] h-[62%] rounded-full bg-[#ccff00]/25 blur-3xl mix-blend-multiply animate-pulse-subtle">
+                        </div>
+
+                        <div class="absolute top-5 left-5 z-20">
+                            <span
+                                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-900 text-[#ccff00] text-[10px] font-mono font-bold uppercase tracking-widest shadow-lg">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span>
+                                Pré-venda
+                            </span>
+                        </div>
+
+                        <div class="absolute top-5 right-5 z-20">
+                            <span
+                                class="inline-flex items-center px-3 py-1.5 rounded-full bg-[#ccff00] text-stone-900 text-[10px] font-mono font-black uppercase tracking-tight shadow-lg animate-price-pulse">
+                                Economize R$10
+                            </span>
+                        </div>
+
+                        <div class="relative w-full flex-1 min-h-[300px]">
+                            <div class="book-float-stage mix-blend-multiply absolute inset-0">
+                                <img src="raw_files/mockup_nao_se_cale.png"
+                                    alt="Mockup oficial do livro Não Se Cale, de Rafael Elian"
+                                    class="book-img w-full h-full object-contain transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                                    loading="lazy" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Editorial Philosophy + Promo -->
+                <div class="lg:col-span-5 flex flex-col gap-4">
+
+                    <div class="glass-pill p-5 sm:p-6 rounded-2xl border border-stone-300/80 shadow-sm reveal delay-100">
+                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500 font-bold">
+                            Vivência real
+                        </span>
+                        <h4 class="text-lg font-bold tracking-tight text-stone-900 mt-3 mb-1.5">
+                            Você já pensou em como 15 minutos podem mudar a sua vida?
+                        </h4>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Este não é um livro de definições teológicas sobre fé.
+                            O que você encontrará é algo mais profundo:
+                            uma história real, vivida por uma família real, que experimentou a fé
+                            em sua forma mais desafiadora, chorosa, alegre e transformadora.
+                        </p>
+                    </div>
+
+                    <div class="glass-pill p-5 sm:p-6 rounded-2xl border border-stone-300/80 shadow-sm reveal delay-200">
+                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500 font-bold">
+                            Consciência
+                        </span>
+                        <h4 class="text-lg font-bold tracking-tight text-stone-900 mt-3 mb-1.5">
+                            Entre perdas e milagres, lágrimas e convicções
+                        </h4>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Você perceberá que a fé não é teoria. É vivência. É
+                            decisão. É legado. E talvez, ao final da leitura, você descubra que o maior
+                            desafio não é ter fé demais ou fé de menos, mas simplesmente
+                            <strong>não se calar</strong>.
+                        </p>
+                    </div>
+
+                    <div id="oferta-pre-venda"
+                        class="relative overflow-hidden rounded-2xl bg-stone-900 text-white p-5 sm:p-6 shadow-2xl reveal delay-300 group">
+                        <div class="pointer-events-none absolute -top-16 -right-10 w-48 h-48 rounded-full bg-[#ccff00]/20 blur-3xl"></div>
+                        <div class="pointer-events-none absolute -bottom-20 -left-8 w-40 h-40 rounded-full bg-[#ccff00]/10 blur-3xl"></div>
+
+                        <div class="relative z-10 flex items-center justify-between gap-3 mb-3">
+                            <span
+                                class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#ccff00] text-stone-900 text-[10px] font-mono font-black uppercase tracking-widest">
+                                Oferta de pré-venda
+                            </span>
+                            <span class="text-[10px] font-mono uppercase tracking-widest text-stone-400">
+                                Depois: R$49,00
+                            </span>
+                        </div>
+
+                        <div class="relative z-10 price-shine rounded-xl mb-2">
+                            <div class="flex items-end gap-3">
+                                <p class="text-5xl font-black tracking-tighter leading-none text-white">
+                                    R$39<span class="text-3xl align-top text-[#ccff00]">,00</span>
+                                </p>
+                                <p class="pb-1.5 text-lg font-mono text-stone-500 line-through decoration-[#ccff00]/70">
+                                    R$49,00
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative z-10 group/cta inline-flex w-full items-center justify-center overflow-hidden rounded-full p-[1.5px] cursor-pointer">
+                            <span
+                                class="absolute inset-[-1000%] animate-spin-beam bg-[conic-gradient(from_0deg,transparent_0_330deg,#ccff00_360deg)]"></span>
+                            <a href="#comprar"
+                                class="relative flex w-full items-center justify-center rounded-full bg-stone-900 px-6 py-3.5 transition-colors duration-300 hover:bg-black">
+                                <span
+                                    class="text-xs font-mono font-bold uppercase tracking-widest text-[#ccff00] flex items-center gap-2">
+                                    Garantir na pré-venda
+                                    <iconify-icon icon="solar:arrow-right-linear"
+                                        class="text-base transition-transform duration-300 group-hover/cta:translate-x-1.5"></iconify-icon>
+                                </span>
+                            </a>
+                        </div>
+
+                        <p class="relative z-10 mt-4 text-[11px] leading-relaxed text-stone-500 border-t border-white/10 pt-3">
+                            Trata-se de uma pré-venda. Não há previsão de entrega. O livro só será impresso após
+                            atingirmos 100% da meta, e o envio/retirada ocorrerá após o lançamento.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 3: MARQUEE SHOWCASE (From Design System 6)
+    ======================================================== -->
+    <section class="py-12 bg-stone-900 border-y border-stone-800 overflow-hidden relative select-none">
+        <div class="absolute inset-0 bg-grid opacity-10 pointer-events-none"></div>
+        <div class="marquee-container">
+            <div class="marquee-content items-center">
+                <span
+                    class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-transparent transparent-text-outline mx-6"
+                    style="-webkit-text-stroke: 1px rgba(255,255,255,0.25);">
+                    NÃO SE CALE!
+                </span>
+                <iconify-icon icon="solar:star-fall-linear"
+                    class="text-3xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon>
+                <span class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mx-6">
+                    ELES PRECISAM OUVIR TAMBÉM
+                </span>
+                <iconify-icon icon="solar:atom-linear"
+                    class="text-3xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon>
+                <span
+                    class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-transparent transparent-text-outline mx-6"
+                    style="-webkit-text-stroke: 1px rgba(255,255,255,0.25);">
+                    15 MINUTOS MUDARAM TUDO
+                </span>
+                <iconify-icon icon="solar:infinity-linear"
+                    class="text-3xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon>
+            </div>
+            <!-- Duplicate for Seamless Marquee Loop -->
+            <div class="marquee-content items-center" aria-hidden="true">
+                <span
+                    class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-transparent transparent-text-outline mx-6"
+                    style="-webkit-text-stroke: 1px rgba(255,255,255,0.25);">
+                    NÃO SE CALE!
+                </span>
+                <iconify-icon icon="solar:star-fall-linear"
+                    class="text-3xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon>
+                <span class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mx-6">
+                    ELES PRECISAM OUVIR TAMBÉM
+                </span>
+                <iconify-icon icon="solar:atom-linear"
+                    class="text-3xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon>
+                <span
+                    class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-transparent transparent-text-outline mx-6"
+                    style="-webkit-text-stroke: 1px rgba(255,255,255,0.25);">
+                    15 MINUTOS MUDARAM TUDO
+                </span>
+                <iconify-icon icon="solar:infinity-linear"
+                    class="text-3xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 4: TECHNICAL SPECIFICATIONS & DETAILS
+    ======================================================== -->
+    <section id="autor" class="relative z-20 border-b border-stone-300 bg-[#EAEAE5] py-14 md:py-16 scroll-mt-24 overflow-hidden">
+        <div class="pointer-events-none absolute inset-0 bg-grid opacity-30"></div>
+        <div class="pointer-events-none absolute -top-24 right-[8%] w-[28rem] h-[28rem] rounded-full bg-[#ccff00]/20 blur-3xl mix-blend-multiply animate-pulse-subtle"></div>
+
+        <div class="relative max-w-[1520px] mx-auto px-6 md:px-12 lg:px-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
+
+                <!-- LEFT: Portrait -->
+                <div class="lg:col-span-5 relative author-stage reveal">
+                    <div class="relative h-full">
+                        <div id="author-card"
+                            class="group relative h-full min-h-[460px] sm:min-h-[560px] lg:min-h-[640px] rounded-2xl bg-stone-900 shadow-2xl flashlight-card cursor-crosshair">
+
+                            <div class="author-photo-clip absolute inset-0 overflow-hidden rounded-2xl">
+                                <div class="author-parallax absolute -inset-4">
+                                    <img src="raw_files/autor_rafael_elian_9x16.png"
+                                        alt="Retrato de Rafael Elian, autor do livro Não Se Cale"
+                                        class="author-photo-img w-full h-full object-cover object-[50%_22%]" loading="lazy" />
+                                </div>
+                                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/25 to-transparent"></div>
+                                <div class="pointer-events-none absolute inset-0 bg-grid opacity-40 mix-blend-soft-light"></div>
+                                <div class="pointer-events-none absolute -bottom-24 -left-16 w-72 h-72 rounded-full bg-[#ccff00]/20 blur-3xl animate-pulse-subtle"></div>
+                                <div class="author-scan pointer-events-none absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ccff00] to-transparent"></div>
+                            </div>
+
+                            <!-- corner brackets -->
+                            <span class="pointer-events-none absolute top-4 left-4 w-5 h-5 border-t-2 border-l-2 border-[#ccff00] opacity-0 -translate-x-2 -translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 z-20"></span>
+                            <span class="pointer-events-none absolute top-4 right-4 w-5 h-5 border-t-2 border-r-2 border-[#ccff00] opacity-0 translate-x-2 -translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 z-20"></span>
+                            <span class="pointer-events-none absolute bottom-4 left-4 w-5 h-5 border-b-2 border-l-2 border-[#ccff00] opacity-0 -translate-x-2 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 z-20"></span>
+                            <span class="pointer-events-none absolute bottom-4 right-4 w-5 h-5 border-b-2 border-r-2 border-[#ccff00] opacity-0 translate-x-2 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 z-20"></span>
+
+                            <div class="absolute top-5 left-5 z-20">
+                                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-900/80 backdrop-blur-md border border-white/10 text-[#ccff00] text-[10px] font-mono font-bold uppercase tracking-widest shadow-lg">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span>
+                                    O Autor
+                                </span>
+                            </div>
+
+                            <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 z-20">
+                                <div class="author-line h-[2px] bg-[#ccff00] mb-4"></div>
+                                <p class="text-3xl sm:text-4xl font-bold tracking-tighter text-white leading-none">Rafael Elian</p>
+                                <p class="mt-2 text-[11px] font-mono uppercase tracking-widest text-[#ccff00]">Pastor &bull; Teólogo &bull; Escritor</p>
+                            </div>
+                        </div>
+
+                        <!-- rotating seal -->
+                        <div class="absolute -top-7 -right-3 sm:-right-6 z-30 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-[#ccff00] shadow-xl flex items-center justify-center author-seal">
+                            <svg viewBox="0 0 120 120" class="absolute inset-0 w-full h-full animate-spin-slow" aria-hidden="true">
+                                <defs>
+                                    <path id="author-circle" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" />
+                                </defs>
+                                <text font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="#1c1917">
+                                    <textPath href="#author-circle" textLength="270" lengthAdjust="spacing">AUTOR &#x2022; PASTOR &#x2022; TEÓLOGO &#x2022; ESCRITOR &#x2022;</textPath>
+                                </text>
+                            </svg>
+                            <iconify-icon icon="solar:arrow-right-up-linear" class="text-3xl text-stone-900"></iconify-icon>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Content -->
+                <div class="lg:col-span-7 flex flex-col justify-between gap-8 author-stage">
+
+                    <div>
+                        <div class="reveal flex items-center gap-3 mb-4">
+                            <span class="text-xs font-mono uppercase tracking-widest text-stone-500">04 / O AUTOR</span>
+                            <span class="w-12 h-[1px] bg-stone-300"></span>
+                        </div>
+
+                        <h2 class="text-6xl sm:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-stone-900">
+                            <span class="block text-reveal-wrapper"><span class="text-reveal-content">Rafael</span></span>
+                            <span class="block text-reveal-wrapper"><span class="text-reveal-content delay-100 transparent-text-outline">Elian</span></span>
+                        </h2>
+
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span class="reveal delay-200 author-chip">Pastor</span>
+                            <span class="reveal delay-300 author-chip">Teólogo</span>
+                            <span class="reveal delay-500 author-chip">Escritor</span>
+                        </div>
+                    </div>
+
+                    <div class="reveal delay-200 glass-pill rounded-2xl border border-stone-300/80 shadow-sm p-6 sm:p-8 flashlight-card author-bio">
+                        <p data-scrub class="text-lg sm:text-xl font-medium tracking-tight text-stone-900 leading-snug">Rafael é casado com Viviane Vale Elian, pai do Benjamim e pai do coração de Theo e Valentina. Pastor, teólogo e escritor, carrega uma profunda paixão por ver vidas transformadas pelo Evangelho.</p>
+                        <p data-scrub class="mt-5 text-sm sm:text-[15px] text-stone-600 leading-relaxed">Dedicado ao ensino e à pregação da Palavra. Rafael também se expressa por meio da escrita, sendo autor de obras como Antes do Compromisso e Suficiente. Sua jornada é marcada pelo compromisso de anunciar a mensagem da Graça por onde Deus o conduz, inspirando pessoas a viverem uma fé autêntica e transformadora.</p>
+                    </div>
+
+                    <div class="reveal delay-300">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-xs font-mono uppercase tracking-widest text-stone-500 font-bold">Obras</span>
+                            <span class="flex-1 h-[1px] bg-stone-300"></span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="author-work group/work relative overflow-hidden rounded-xl border border-stone-300/80 bg-white/70 px-5 py-4 flex items-center justify-between transition-all duration-500 hover:bg-white hover:-translate-y-1 hover:shadow-lg">
+                                <span class="absolute inset-y-0 left-0 w-1 bg-[#ccff00] scale-y-0 origin-top transition-transform duration-500 group-hover/work:scale-y-100"></span>
+                                <div>
+                                    <span class="text-[10px] font-mono text-stone-400 tracking-widest">01</span>
+                                    <p class="text-base font-bold tracking-tight text-stone-900">Antes do Compromisso</p>
+                                </div>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-xl text-stone-400 transition-all duration-500 group-hover/work:text-stone-900 group-hover/work:translate-x-1 group-hover/work:-translate-y-1"></iconify-icon>
+                            </div>
+                            <div class="author-work group/work relative overflow-hidden rounded-xl border border-stone-300/80 bg-white/70 px-5 py-4 flex items-center justify-between transition-all duration-500 hover:bg-white hover:-translate-y-1 hover:shadow-lg">
+                                <span class="absolute inset-y-0 left-0 w-1 bg-[#ccff00] scale-y-0 origin-top transition-transform duration-500 group-hover/work:scale-y-100"></span>
+                                <div>
+                                    <span class="text-[10px] font-mono text-stone-400 tracking-widest">02</span>
+                                    <p class="text-base font-bold tracking-tight text-stone-900">Suficiente</p>
+                                </div>
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-xl text-stone-400 transition-all duration-500 group-hover/work:text-stone-900 group-hover/work:translate-x-1 group-hover/work:-translate-y-1"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 5: FAQ
+    ======================================================== -->
+    <section id="faq" class="relative z-20 border-b border-stone-300 bg-[#EAEAE5] py-16 md:py-24 scroll-mt-24 overflow-hidden">
+        <div class="pointer-events-none absolute inset-0 bg-grid opacity-30"></div>
+        <div class="pointer-events-none absolute top-1/3 -left-32 w-[26rem] h-[26rem] rounded-full bg-[#ccff00]/20 blur-3xl mix-blend-multiply animate-pulse-subtle"></div>
+        <div class="faq-bigq pointer-events-none select-none absolute -right-6 top-6 text-[22rem] sm:text-[30rem] font-black leading-none tracking-tighter text-transparent transparent-text-outline" aria-hidden="true">?</div>
+
+        <div class="relative max-w-[1520px] mx-auto px-6 md:px-12 lg:px-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+                <!-- LEFT: sticky heading -->
+                <div class="lg:col-span-5 lg:sticky lg:top-28 faq-head">
+                    <div class="reveal flex items-center gap-3 mb-4">
+                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500">05 / FAQ</span>
+                        <span class="w-12 h-[1px] bg-stone-300"></span>
+                    </div>
+
+                    <h2 class="text-6xl sm:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-stone-900">
+                        <span class="block text-reveal-wrapper"><span class="text-reveal-content">Dúvidas</span></span>
+                        <span class="block text-reveal-wrapper"><span class="text-reveal-content delay-100 transparent-text-outline">Frequentes</span></span>
+                    </h2>
+
+                    <p class="reveal delay-200 mt-6 max-w-md text-sm sm:text-base text-stone-600 leading-relaxed">
+                        Tudo o que você precisa saber sobre a pré-venda, a entrega e o pagamento &mdash; antes de garantir o seu exemplar.
+                    </p>
+
+                    <div class="reveal delay-300 mt-8 relative overflow-hidden rounded-2xl bg-stone-900 text-white p-6 shadow-2xl flashlight-card max-w-md">
+                        <div class="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[#ccff00]/20 blur-3xl animate-pulse-subtle"></div>
+                        <div class="relative z-10">
+                            <span class="inline-flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-[#ccff00]">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span>
+                                Ainda com dúvida?
+                            </span>
+                            <p class="mt-3 text-lg font-bold tracking-tight leading-snug">Fale diretamente com o autor.</p>
+                            <p class="mt-1.5 text-xs text-stone-400 leading-relaxed">Respondemos pelo Instagram e também combinamos a retirada.</p>
+
+                            <a href="https://instagram.com/rafaelelian" target="_blank" rel="noopener"
+                                class="group/ig relative mt-5 inline-flex w-full items-center justify-center overflow-hidden rounded-full p-[1.5px] cursor-pointer">
+                                <span class="absolute inset-[-1000%] animate-[spin_2.5s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_300deg,#ccff00_360deg)]"></span>
+                                <span class="relative z-10 flex w-full items-center justify-center gap-2 rounded-full bg-stone-900 px-6 py-3.5 text-[11px] font-mono font-bold uppercase tracking-widest text-[#ccff00] transition-colors duration-500 group-hover/ig:bg-[#ccff00] group-hover/ig:text-stone-900">
+                                    <iconify-icon icon="mdi:instagram" class="text-base"></iconify-icon>
+                                    @rafaelelian
+                                    <iconify-icon icon="solar:arrow-right-up-linear" class="text-base transition-transform duration-500 group-hover/ig:translate-x-1 group-hover/ig:-translate-y-1"></iconify-icon>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: accordion -->
+                <div class="lg:col-span-7">
+                    <div class="reveal flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500 font-bold">06 perguntas</span>
+                        <button type="button" id="faq-toggle-all" class="text-[11px] font-mono uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors underline underline-offset-4 decoration-stone-300 hover:decoration-[#ccff00]">Abrir todas</button>
+                    </div>
+                    <div id="faq-list" class="flex flex-col gap-3">
+                        <div class="faq-item reveal flashlight-card" style="transition-delay:0.00s">
+                            <h3>
+                                <button type="button" class="faq-trigger" id="faq-btn-0" aria-expanded="false" aria-controls="faq-panel-0">
+                                    <span class="faq-num">01</span>
+                                    <span class="faq-q">Quando o livro será entregue?</span>
+                                    <span class="faq-icon" aria-hidden="true"><i></i><i></i></span>
+                                </button>
+                            </h3>
+                            <div class="faq-panel" id="faq-panel-0" role="region" aria-labelledby="faq-btn-0">
+                                <div class="faq-panel-inner">
+                                    <p>O livro será impresso após a campanha atingir <mark class="faq-mark">100% da meta</mark>. Por isso, ainda não há uma data exata para a entrega. Assim que o lançamento acontecer, os livros serão enviados ou estarão disponíveis para retirada.</p>
+                                </div>
+                            </div>
+                            <span class="faq-bar" aria-hidden="true"></span>
+                        </div>
+                        <div class="faq-item reveal flashlight-card" style="transition-delay:0.08s">
+                            <h3>
+                                <button type="button" class="faq-trigger" id="faq-btn-1" aria-expanded="false" aria-controls="faq-panel-1">
+                                    <span class="faq-num">02</span>
+                                    <span class="faq-q">E se a meta não for atingida?</span>
+                                    <span class="faq-icon" aria-hidden="true"><i></i><i></i></span>
+                                </button>
+                            </h3>
+                            <div class="faq-panel" id="faq-panel-1" role="region" aria-labelledby="faq-btn-1">
+                                <div class="faq-panel-inner">
+                                    <p>Não se preocupe: <mark class="faq-mark">você receberá o seu livro normalmente</mark>. Após o encerramento da campanha, a quantidade de exemplares vendidos será encaminhada para impressão, garantindo que todos os compradores recebam seu livro.</p>
+                                </div>
+                            </div>
+                            <span class="faq-bar" aria-hidden="true"></span>
+                        </div>
+                        <div class="faq-item reveal flashlight-card" style="transition-delay:0.16s">
+                            <h3>
+                                <button type="button" class="faq-trigger" id="faq-btn-2" aria-expanded="false" aria-controls="faq-panel-2">
+                                    <span class="faq-num">03</span>
+                                    <span class="faq-q">Como acompanho o andamento da campanha?</span>
+                                    <span class="faq-icon" aria-hidden="true"><i></i><i></i></span>
+                                </button>
+                            </h3>
+                            <div class="faq-panel" id="faq-panel-2" role="region" aria-labelledby="faq-btn-2">
+                                <div class="faq-panel-inner">
+                                    <p>Você pode acompanhar o progresso diretamente pela barra de progresso nesta página. Também compartilharemos atualizações pelo Instagram <a href="https://instagram.com/rafaelelian" target="_blank" rel="noopener" class="faq-mark">@rafaelelian</a>.</p>
+                                </div>
+                            </div>
+                            <span class="faq-bar" aria-hidden="true"></span>
+                        </div>
+                        <div class="faq-item reveal flashlight-card" style="transition-delay:0.24s">
+                            <h3>
+                                <button type="button" class="faq-trigger" id="faq-btn-3" aria-expanded="false" aria-controls="faq-panel-3">
+                                    <span class="faq-num">04</span>
+                                    <span class="faq-q">O frete está incluso?</span>
+                                    <span class="faq-icon" aria-hidden="true"><i></i><i></i></span>
+                                </button>
+                            </h3>
+                            <div class="faq-panel" id="faq-panel-3" role="region" aria-labelledby="faq-btn-3">
+                                <div class="faq-panel-inner">
+                                    <p>Não. O valor do frete é de <mark class="faq-mark">R$12,90</mark> e será acrescentado ao valor da compra no momento do pedido.</p>
+                                </div>
+                            </div>
+                            <span class="faq-bar" aria-hidden="true"></span>
+                        </div>
+                        <div class="faq-item reveal flashlight-card" style="transition-delay:0.32s">
+                            <h3>
+                                <button type="button" class="faq-trigger" id="faq-btn-4" aria-expanded="false" aria-controls="faq-panel-4">
+                                    <span class="faq-num">05</span>
+                                    <span class="faq-q">Posso retirar o livro pessoalmente?</span>
+                                    <span class="faq-icon" aria-hidden="true"><i></i><i></i></span>
+                                </button>
+                            </h3>
+                            <div class="faq-panel" id="faq-panel-4" role="region" aria-labelledby="faq-btn-4">
+                                <div class="faq-panel-inner">
+                                    <p>Sim! Você poderá retirar seu livro pessoalmente na <mark class="faq-mark">CCVideira Sul</mark>. Para combinar a retirada e receber as orientações, entre em contato diretamente com o autor pelo WhatsApp ou pelo Instagram <a href="https://instagram.com/rafaelelian" target="_blank" rel="noopener" class="faq-mark">@rafaelelian</a>.</p>
+                                </div>
+                            </div>
+                            <span class="faq-bar" aria-hidden="true"></span>
+                        </div>
+                        <div class="faq-item reveal flashlight-card" style="transition-delay:0.40s">
+                            <h3>
+                                <button type="button" class="faq-trigger" id="faq-btn-5" aria-expanded="false" aria-controls="faq-panel-5">
+                                    <span class="faq-num">06</span>
+                                    <span class="faq-q">É seguro realizar o pagamento?</span>
+                                    <span class="faq-icon" aria-hidden="true"><i></i><i></i></span>
+                                </button>
+                            </h3>
+                            <div class="faq-panel" id="faq-panel-5" role="region" aria-labelledby="faq-btn-5">
+                                <div class="faq-panel-inner">
+                                    <p>Sim. O pagamento é processado pela <mark class="faq-mark">InfinitePay</mark>, uma plataforma especializada em pagamentos online. Seus dados de pagamento são processados de forma segura pela plataforma.</p>
+                                </div>
+                            </div>
+                            <span class="faq-bar" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================================
+         SECTION 6: FINAL CHECKOUT CALL-TO-ACTION (From DS6)
+    ======================================================== -->
+    <section id="comprar" class="cta-section relative z-20 isolate bg-stone-900 text-white min-h-[92vh] py-28 flex items-center overflow-hidden">
+
+        <!-- VIDEO BACKGROUND -->
+        <div id="cta-video-wrap" class="absolute -inset-[8%] z-0">
+            <video id="cta-video" class="w-full h-full object-cover" src="raw_files/nao_se_cale2.mp4"
+                autoplay muted loop playsinline preload="metadata" tabindex="-1" aria-hidden="true"></video>
+        </div>
+        <div class="absolute inset-0 z-[1] bg-stone-900/65"></div>
+        <div class="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(28,25,23,0.55)_55%,rgba(28,25,23,0.95)_100%)]"></div>
+        <div class="absolute inset-x-0 top-0 h-40 z-[1] bg-gradient-to-b from-stone-900 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 h-40 z-[1] bg-gradient-to-t from-stone-900 to-transparent"></div>
+        <div class="pointer-events-none absolute inset-0 z-[1] bg-grid opacity-[0.12] mix-blend-screen"></div>
+        <div class="cta-scan pointer-events-none absolute inset-0 z-[1]"></div>
+        <div class="cta-spot pointer-events-none absolute inset-0 z-[2]"></div>
+        <div class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[46rem] h-[46rem] rounded-full bg-[#ccff00]/10 blur-3xl z-[1] animate-pulse-subtle"></div>
+
+        <!-- BACKGROUND MARQUEES -->
+        <div class="pointer-events-none select-none absolute inset-x-0 top-[9%] z-[2] opacity-[0.16] rotate-[-3deg]" aria-hidden="true">
+            <div class="marquee-container"><div class="marquee-content items-center"><span class="mx-8 text-8xl sm:text-9xl font-black uppercase tracking-tighter text-transparent transparent-text-outline">NÃO SE CALE</span><iconify-icon icon="solar:asterisk-bold" class="text-6xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon><span class="mx-8 text-8xl sm:text-9xl font-black uppercase tracking-tighter text-transparent transparent-text-outline">NÃO SE CALE</span><iconify-icon icon="solar:asterisk-bold" class="text-6xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon><span class="mx-8 text-8xl sm:text-9xl font-black uppercase tracking-tighter text-transparent transparent-text-outline">NÃO SE CALE</span><iconify-icon icon="solar:asterisk-bold" class="text-6xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon></div><div class="marquee-content items-center" aria-hidden="true"><span class="mx-8 text-8xl sm:text-9xl font-black uppercase tracking-tighter text-transparent transparent-text-outline">NÃO SE CALE</span><iconify-icon icon="solar:asterisk-bold" class="text-6xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon><span class="mx-8 text-8xl sm:text-9xl font-black uppercase tracking-tighter text-transparent transparent-text-outline">NÃO SE CALE</span><iconify-icon icon="solar:asterisk-bold" class="text-6xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon><span class="mx-8 text-8xl sm:text-9xl font-black uppercase tracking-tighter text-transparent transparent-text-outline">NÃO SE CALE</span><iconify-icon icon="solar:asterisk-bold" class="text-6xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon></div></div>
+        </div>
+        <div class="pointer-events-none select-none absolute inset-x-0 bottom-[9%] z-[2] opacity-[0.16] rotate-[-3deg]" aria-hidden="true">
+            <div class="marquee-container"><div class="marquee-content cta-rev items-center"><span class="mx-8 text-8xl sm:text-9xl font-black uppercase tracking-tighter text-transparent transparent-text-outline">NÃO SE CALE</span><iconify-icon icon="solar:asterisk-bold" class="text-6xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon><span class="mx-8 text-8xl sm:text-9xl font-black uppercase tracking-tighter text-transparent transparent-text-outline">NÃO SE CALE</span><iconify-icon icon="solar:asterisk-bold" class="text-6xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon><span class="mx-8 text-8xl sm:text-9xl font-black uppercase tracking-tighter text-transparent transparent-text-outline">NÃO SE CALE</span><iconify-icon icon="solar:asterisk-bold" class="text-6xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon></div><div class="marquee-content cta-rev items-center" aria-hidden="true"><span class="mx-8 text-8xl sm:text-9xl font-black uppercase tracking-tighter text-transparent transparent-text-outline">NÃO SE CALE</span><iconify-icon icon="solar:asterisk-bold" class="text-6xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon><span class="mx-8 text-8xl sm:text-9xl font-black uppercase tracking-tighter text-transparent transparent-text-outline">NÃO SE CALE</span><iconify-icon icon="solar:asterisk-bold" class="text-6xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon><span class="mx-8 text-8xl sm:text-9xl font-black uppercase tracking-tighter text-transparent transparent-text-outline">NÃO SE CALE</span><iconify-icon icon="solar:asterisk-bold" class="text-6xl text-[#ccff00] mx-4 animate-spin-slow"></iconify-icon></div></div>
+        </div>
+
+        <!-- HUD -->
+        <div class="cta-hud absolute inset-0 z-[3] pointer-events-none px-5 sm:px-8 py-6 hidden sm:block" aria-hidden="true">
+            <span class="cta-corner top-5 left-5 border-t-2 border-l-2"></span>
+            <span class="cta-corner top-5 right-5 border-t-2 border-r-2"></span>
+            <span class="cta-corner bottom-5 left-5 border-b-2 border-l-2"></span>
+            <span class="cta-corner bottom-5 right-5 border-b-2 border-r-2"></span>
+            <div class="absolute top-9 left-12 flex items-center gap-3 text-[10px] font-mono font-bold uppercase tracking-widest text-white/80">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                <span>REC</span>
+                <span id="cta-timecode" class="text-[#ccff00] tabular-nums">00:00:00:00</span>
+            </div>
+            <div class="absolute top-9 right-12 text-[10px] font-mono uppercase tracking-widest text-white/60">Não se cale &bull; 2ª edição</div>
+            <div class="absolute bottom-9 left-12 text-[10px] font-mono uppercase tracking-widest text-white/40">Rafael Elian</div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="max-w-[1520px] w-full mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+            <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
+
+                <span class="reveal inline-flex items-center gap-2 px-4 py-1.5 bg-[#ccff00] text-black font-mono font-bold text-xs uppercase tracking-widest rounded-full mb-7 shadow-[0_0_30px_rgba(204,255,0,0.35)] animate-price-pulse">
+                    <span class="w-1.5 h-1.5 rounded-full bg-black animate-pulse"></span>
+                    PRÉ-VENDA ABERTA
+                </span>
+
+                <h2 class="text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter text-white leading-[0.92] mb-6">
+                    <span class="block text-reveal-wrapper"><span class="text-reveal-content delay-100 cta-fill">ADQUIRA O SEU</span></span>
+                    <span class="block text-reveal-wrapper"><span class="text-reveal-content delay-200 cta-fill">EXEMPLAR.</span></span>
+                </h2>
+
+                <p class="reveal delay-300 text-stone-300 text-base sm:text-lg max-w-xl mb-8 leading-relaxed font-light">
+                    Não permita que suas palavras mais importantes fiquem no silêncio. Faça parte dessa jornada de fé
+                    autêntica e transformação.
+                </p>
+
+                <!-- Magnetic beam button -->
+                <div class="reveal delay-500">
+                    <div id="cta-magnet" class="cta-magnet inline-block">
+                        <div class="cta-main group relative inline-flex items-center justify-center overflow-hidden rounded-full p-[2px] cursor-pointer shadow-2xl animate-price-pulse">
+                            <span class="absolute inset-[-1000%] animate-spin-beam bg-[conic-gradient(from_0deg,transparent_0_330deg,#ccff00_360deg)]"></span>
+                            <button class="relative flex h-full w-full items-center overflow-hidden rounded-full bg-stone-900 px-10 py-5 sm:px-12 sm:py-6 transition-all duration-500 group-hover:bg-[#ccff00] text-white">
+                                <span class="absolute top-0 left-0 h-full w-full -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 group-hover:animate-[shimmer_1s_infinite] group-hover:opacity-100"></span>
+                                <span class="relative text-sm sm:text-base font-mono font-bold uppercase tracking-widest text-[#ccff00] group-hover:text-stone-900 transition-colors duration-500 flex items-center gap-3">
+                                    GARANTIR MEU LIVRO AGORA
+                                    <iconify-icon icon="solar:arrow-right-linear" class="text-xl transition-transform duration-500 group-hover:translate-x-2"></iconify-icon>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- trust chips -->
+                <div class="mt-9 flex flex-wrap items-center justify-center gap-3 text-[11px] font-mono text-stone-300 uppercase tracking-widest">
+                    <span class="reveal delay-500 cta-chip"><iconify-icon icon="solar:shield-check-linear" class="text-base text-[#ccff00]"></iconify-icon>Compra Segura</span>
+                    <span class="reveal delay-700 cta-chip"><iconify-icon icon="solar:delivery-linear" class="text-base text-[#ccff00]"></iconify-icon>Envio com Rastreio</span>
+                    <span class="reveal delay-700 cta-chip"><iconify-icon icon="solar:verified-check-linear" class="text-base text-[#ccff00]"></iconify-icon>2ª Edição Oficial</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- video control (a11y) -->
+        <button type="button" id="cta-video-toggle" aria-pressed="false"
+            class="absolute bottom-5 right-5 sm:bottom-8 sm:right-12 z-20 inline-flex items-center gap-2 rounded-full border border-white/20 bg-stone-900/60 backdrop-blur-md px-3.5 py-2 text-[10px] font-mono font-bold uppercase tracking-widest text-white/80 transition-all duration-300 hover:border-[#ccff00] hover:text-[#ccff00]">
+            <iconify-icon id="cta-video-icon" icon="solar:pause-bold" class="text-sm"></iconify-icon>
+            <span id="cta-video-label">Pausar vídeo</span>
+        </button>
+    </section>
+
+    <!-- ========================================================
+         FOOTER (From Design System 6)
+    ======================================================== -->
+    <footer class="relative z-20 bg-stone-900 text-stone-400 py-12 text-center border-t border-stone-800">
+        <div class="max-w-[1520px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 rounded-full bg-stone-800 flex items-center justify-center text-[#ccff00]">
+                    <iconify-icon icon="solar:book-bookmark-minimalistic-bold" class="text-sm"></iconify-icon>
+                </div>
+                <span class="text-xs font-mono font-bold tracking-widest uppercase text-white">NÃO SE CALE!</span>
+            </div>
+
+            <span class="text-[11px] font-mono uppercase tracking-widest text-stone-500">
+                © Rafael Elian • Todos os direitos reservados • Design System v3.0
+            </span>
+
+            <a href="#hero-pin-container"
+                class="text-xs font-mono uppercase tracking-widest text-stone-400 hover:text-white transition-colors flex items-center gap-1.5">
+                Voltar ao topo ↑
+            </a>
+        </div>
+    </footer>
+
+
+    <!-- ========================================================
+         SCRIPTS ARCHITECTURE (Organized in Logical Modules)
+         1. CONFIG
+         2. DOM
+         3. LENIS SMOOTH SCROLL
+         4. VIDEO ENGINE & SCRUBBING
+         5. GSAP SCROLLTRIGGER ORCHESTRATION
+         6. HERO ENTRANCE & EXIT ANIMATIONS
+         7. RESPONSIVE & ACCESSIBILITY
+    ======================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ====================================================
+            // 1. CONFIGURATION TOKENS
+            // ====================================================
+            const CONFIG = {
+                scrollDistance: window.innerHeight * 2.8, // Section length for smooth scrubbing
+                videoDurationFallback: 4.205, // Extracted MP4 metadata duration
+                minTimeDelta: 0.02,           // Prevent redundant video seeks
+                isReducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            };
+
+            // ====================================================
+            // 2. DOM CACHING
+            // ====================================================
+            const DOM = {
+                video: document.getElementById('hero-video'),
+                heroTrack: document.getElementById('hero-scroll-track'),
+                heroPin: document.getElementById('hero-pin-container'),
+                header: document.getElementById('main-header'),
+                textBlock: document.getElementById('hero-text-block'),
+                eyebrow: document.getElementById('hero-eyebrow'),
+                headlineGroup: document.getElementById('hero-headline-group'),
+                description: document.getElementById('hero-description'),
+                ctaGroup: document.getElementById('hero-cta-group'),
+                rightIndicator: document.getElementById('hero-right-indicator'),
+                scrollIndicator: document.getElementById('hero-scroll-indicator'),
+                progressBar: document.getElementById('vertical-progress-bar'),
+                timeDisplay: document.getElementById('video-time-display'),
+                sceneCounter: document.getElementById('scene-counter')
+            };
+
+            // Register GSAP plugins
+            gsap.registerPlugin(ScrollTrigger);
+
+            // ====================================================
+            // 3. LENIS SMOOTH SCROLL INTEGRATION
+            // ====================================================
+            let lenis = null;
+            if (!CONFIG.isReducedMotion && typeof Lenis !== 'undefined') {
+                lenis = new Lenis({
+                    duration: 1.15,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    smoothWheel: true,
+                    touchMultiplier: 1.2
+                });
+
+                lenis.on('scroll', ScrollTrigger.update);
+
+                gsap.ticker.add((time) => {
+                    lenis.raf(time * 1000);
+                });
+
+                gsap.ticker.lagSmoothing(0);
+            }
+
+            // ====================================================
+            // 4. HIGH-PERFORMANCE VIDEO SCRUBBING ENGINE
+            // Coalesced RAF execution with seeking check to ensure
+            // zero jumping and buttery frame updates on scroll
+            // ====================================================
+            let targetVideoTime = 0;
+            let currentVideoDuration = CONFIG.videoDurationFallback;
+            let isSeeking = false;
+            let rafId = null;
+
+            function onVideoMetadataReady() {
+                if (DOM.video.duration && !isNaN(DOM.video.duration)) {
+                    currentVideoDuration = DOM.video.duration;
+                }
+                // Prime the first frame cleanly
+                DOM.video.currentTime = 0;
+            }
+
+            if (DOM.video.readyState >= 1) {
+                onVideoMetadataReady();
+            } else {
+                DOM.video.addEventListener('loadedmetadata', onVideoMetadataReady);
+            }
+
+            // Seeking guard event listener
+            DOM.video.addEventListener('seeked', () => {
+                isSeeking = false;
+            });
+
+            // The Render Loop: updates video.currentTime only when necessary
+            function scrubRenderLoop() {
+                if (!CONFIG.isReducedMotion && DOM.video) {
+                    const timeDiff = Math.abs(DOM.video.currentTime - targetVideoTime);
+                    if (timeDiff > CONFIG.minTimeDelta && !isSeeking) {
+                        isSeeking = true;
+                        DOM.video.currentTime = targetVideoTime;
+                    }
+                }
+                rafId = requestAnimationFrame(scrubRenderLoop);
+            }
+            rafId = requestAnimationFrame(scrubRenderLoop);
+
+            // ====================================================
+            // 5. HERO ENTRANCE ANIMATION (On Page Load)
+            // Blur In + Fade In + Subtle Translate Y with Stagger
+            // ====================================================
+            function triggerHeroEntrance() {
+                if (CONFIG.isReducedMotion) {
+                    // Instantly visible
+                    gsap.set([DOM.eyebrow, DOM.description, DOM.ctaGroup, DOM.rightIndicator, DOM.scrollIndicator], {
+                        opacity: 1,
+                        filter: 'blur(0px)',
+                        y: 0
+                    });
+                    DOM.headlineGroup.classList.add('reveal-active');
+                    return;
+                }
+
+                // Initial Entrance Timeline
+                const introTl = gsap.timeline({
+                    defaults: { ease: 'power3.out', duration: 1.0 }
+                });
+
+                // Set initial states
+                gsap.set([DOM.eyebrow, DOM.description, DOM.ctaGroup], {
+                    opacity: 0,
+                    filter: 'blur(12px)',
+                    y: 20
+                });
+                gsap.set([DOM.rightIndicator, DOM.scrollIndicator], {
+                    opacity: 0,
+                    filter: 'blur(8px)',
+                    y: 15
+                });
+
+                // Activate headline text-reveal-content from Design System 6
+                DOM.headlineGroup.classList.add('reveal-active');
+
+                // Staggered entrance sequence
+                introTl
+                    .to(DOM.eyebrow, {
+                        opacity: 1,
+                        filter: 'blur(0px)',
+                        y: 0,
+                        duration: 0.8
+                    }, 0.2)
+                    .to(DOM.description, {
+                        opacity: 1,
+                        filter: 'blur(0px)',
+                        y: 0,
+                        duration: 0.85
+                    }, 0.45)
+                    .to(DOM.ctaGroup, {
+                        opacity: 1,
+                        filter: 'blur(0px)',
+                        y: 0,
+                        duration: 0.9
+                    }, 0.65)
+                    .to([DOM.rightIndicator, DOM.scrollIndicator], {
+                        opacity: 1,
+                        filter: 'blur(0px)',
+                        y: 0,
+                        duration: 0.95,
+                        stagger: 0.15
+                    }, 0.8);
+            }
+
+            // Run entrance shortly after page init
+            setTimeout(triggerHeroEntrance, 120);
+
+            // ====================================================
+            // 6. SCROLLTRIGGER & VIDEO SCRUB TIMELINE
+            // Controls pinning, video currentTime, text exit blur/fade,
+            // and reverses seamlessly on upward scroll
+            // ====================================================
+            const scrubTimeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: DOM.heroTrack,
+                    start: 'top top',
+                    end: () => `+=${CONFIG.scrollDistance}`,
+                    pin: DOM.heroPin,
+                    pinSpacing: true,
+                    scrub: 0.6,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+
+                        // 1. Calculate Target Video Scrub Time
+                        targetVideoTime = progress * currentVideoDuration;
+
+                        // 2. Update Progress Bar & Realtime Displays
+                        if (DOM.progressBar) {
+                            DOM.progressBar.style.height = `${(progress * 100).toFixed(1)}%`;
+                        }
+                        if (DOM.timeDisplay) {
+                            DOM.timeDisplay.textContent = `${targetVideoTime.toFixed(2)}s / ${currentVideoDuration.toFixed(2)}s`;
+                        }
+
+                        // 3. Update Scene Step
+                        if (DOM.sceneCounter) {
+                            if (progress < 0.35) {
+                                DOM.sceneCounter.textContent = '01 / 03';
+                            } else if (progress < 0.75) {
+                                DOM.sceneCounter.textContent = '02 / 03';
+                            } else {
+                                DOM.sceneCounter.textContent = '03 / 03';
+                            }
+                        }
+
+                        // 4. Fade Scroll Indicator quickly once user starts scrolling
+                        if (DOM.scrollIndicator) {
+                            DOM.scrollIndicator.style.opacity = Math.max(0, 1 - progress * 8);
+                        }
+                    }
+                }
+            });
+
+            // TEXT BLOCK EXIT ANIMATION DURING SCROLL (Section 15)
+            // As user scrolls, the text block exits with blur, fade, and translation,
+            // clearing the stage for the book opening and page flipping video!
+            if (!CONFIG.isReducedMotion) {
+                scrubTimeline
+                    // Phase 1 (0 -> 45% progress): Text dissolves gracefully
+                    .to(DOM.ctaGroup, {
+                        opacity: 0,
+                        filter: 'blur(10px)',
+                        y: -18,
+                        duration: 0.25,
+                        ease: 'power2.in'
+                    }, 0.08)
+                    .to(DOM.description, {
+                        opacity: 0,
+                        filter: 'blur(12px)',
+                        y: -22,
+                        duration: 0.28,
+                        ease: 'power2.in'
+                    }, 0.12)
+                    .to(DOM.headlineGroup, {
+                        opacity: 0,
+                        filter: 'blur(16px)',
+                        y: -30,
+                        scale: 0.97,
+                        duration: 0.35,
+                        ease: 'power2.in'
+                    }, 0.18)
+                    .to(DOM.eyebrow, {
+                        opacity: 0,
+                        filter: 'blur(12px)',
+                        y: -20,
+                        duration: 0.3,
+                        ease: 'power2.in'
+                    }, 0.2);
+            }
+
+            // ====================================================
+            // 7. META PROGRESS BAR & FLOATING PILL ORCHESTRATION
+            // ====================================================
+            const metaBarFill = document.getElementById('meta-progress-fill');
+            if (metaBarFill) {
+                ScrollTrigger.create({
+                    trigger: '#meta-impressao',
+                    start: 'top 75%',
+                    once: true,
+                    onEnter: () => {
+                        gsap.fromTo(metaBarFill,
+                            { width: '0%' },
+                            { width: '10%', duration: 1.5, ease: 'power3.out' }
+                        );
+                    }
+                });
+            }
+
+            const propositoReveals = document.querySelectorAll('#proposito .reveal');
+            if (CONFIG.isReducedMotion) {
+                propositoReveals.forEach((el) => el.classList.add('active'));
+            } else {
+                const revealObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+                propositoReveals.forEach((el) => revealObserver.observe(el));
+            }
+
+            // ---- Author section ----
+            const authorStages = document.querySelectorAll('#autor .author-stage, #autor .reveal, #autor h2');
+            const markAuthor = (el) => { el.classList.add('active'); el.classList.add('reveal-active'); };
+            if (CONFIG.isReducedMotion) {
+                authorStages.forEach(markAuthor);
+            } else {
+                const authorObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            markAuthor(entry.target);
+                            authorObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+                authorStages.forEach((el) => authorObserver.observe(el));
+            }
+
+            const authorCard = document.getElementById('author-card');
+            if (authorCard && !CONFIG.isReducedMotion) {
+                authorCard.addEventListener('mousemove', (e) => {
+                    const r = authorCard.getBoundingClientRect();
+                    authorCard.style.setProperty('--px', ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+                    authorCard.style.setProperty('--py', ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+                    authorCard.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+                    authorCard.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+                });
+                authorCard.addEventListener('mouseleave', () => {
+                    authorCard.style.setProperty('--px', 0);
+                    authorCard.style.setProperty('--py', 0);
+                });
+            }
+
+            document.querySelectorAll('#autor .author-bio').forEach((card) => {
+                card.addEventListener('mousemove', (e) => {
+                    const r = card.getBoundingClientRect();
+                    card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+                    card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+                });
+            });
+
+            // Word-by-word scroll fill (bio)
+            document.querySelectorAll('#autor [data-scrub]').forEach((p) => {
+                if (CONFIG.isReducedMotion || typeof gsap === 'undefined') return;
+                const words = p.textContent.trim().split(/\s+/);
+                p.setAttribute('aria-label', p.textContent.trim());
+                p.innerHTML = words.map((w) => `<span class="scrub-word" aria-hidden="true">${w}</span>`).join(' ');
+                gsap.fromTo(p.querySelectorAll('.scrub-word'), { opacity: 0.18 }, {
+                    opacity: 1, ease: 'none', stagger: 0.12,
+                    scrollTrigger: { trigger: p, start: 'top 88%', end: 'bottom 58%', scrub: true }
+                });
+            });
+
+            // ---- FAQ section ----
+            const faqRevealEls = document.querySelectorAll('#faq .reveal, #faq h2, #faq .faq-bigq');
+            const markFaq = (el) => {
+                el.classList.add('active');
+                el.classList.add('reveal-active');
+                if (el.classList.contains('faq-item')) setTimeout(() => { el.style.transitionDelay = '0s'; }, 1500);
+            };
+            if (CONFIG.isReducedMotion) {
+                faqRevealEls.forEach(markFaq);
+            } else {
+                const faqObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            markFaq(entry.target);
+                            faqObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+                faqRevealEls.forEach((el) => faqObserver.observe(el));
+            }
+
+            const faqItems = Array.from(document.querySelectorAll('#faq .faq-item'));
+            const faqToggleAll = document.getElementById('faq-toggle-all');
+            const setFaq = (item, open) => {
+                item.classList.toggle('is-open', open);
+                item.querySelector('.faq-trigger').setAttribute('aria-expanded', open ? 'true' : 'false');
+            };
+            const syncToggleAll = () => {
+                if (faqToggleAll) faqToggleAll.textContent = faqItems.every((i) => i.classList.contains('is-open')) ? 'Fechar todas' : 'Abrir todas';
+            };
+            faqItems.forEach((item) => {
+                const btn = item.querySelector('.faq-trigger');
+                btn.addEventListener('click', () => {
+                    const willOpen = !item.classList.contains('is-open');
+                    faqItems.forEach((other) => { if (other !== item) setFaq(other, false); });
+                    setFaq(item, willOpen);
+                    syncToggleAll();
+                });
+                btn.addEventListener('keydown', (e) => {
+                    const idx = faqItems.indexOf(item);
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        const next = faqItems[(idx + (e.key === 'ArrowDown' ? 1 : faqItems.length - 1)) % faqItems.length];
+                        next.querySelector('.faq-trigger').focus();
+                    }
+                });
+                item.addEventListener('mousemove', (e) => {
+                    const r = item.getBoundingClientRect();
+                    item.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+                    item.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+                });
+            });
+            if (faqToggleAll) {
+                faqToggleAll.addEventListener('click', () => {
+                    const openAll = !faqItems.every((i) => i.classList.contains('is-open'));
+                    faqItems.forEach((i) => setFaq(i, openAll));
+                    syncToggleAll();
+                });
+            }
+            document.querySelectorAll('#faq .faq-head .flashlight-card').forEach((card) => {
+                card.addEventListener('mousemove', (e) => {
+                    const r = card.getBoundingClientRect();
+                    card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+                    card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+                });
+            });
+
+            // ---- Final CTA section ----
+            const ctaSection = document.getElementById('comprar');
+            const ctaVideo = document.getElementById('cta-video');
+            const ctaHud = ctaSection ? ctaSection.querySelector('.cta-hud') : null;
+            if (ctaSection) {
+                const ctaEls = ctaSection.querySelectorAll('.reveal, h2');
+                const markCta = (el) => { el.classList.add('active'); el.classList.add('reveal-active'); };
+                if (CONFIG.isReducedMotion) {
+                    ctaEls.forEach(markCta);
+                    if (ctaHud) ctaHud.classList.add('on');
+                } else {
+                    const ctaObserver = new IntersectionObserver((entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                markCta(entry.target);
+                                ctaObserver.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+                    ctaEls.forEach((el) => ctaObserver.observe(el));
+                }
+
+                // spotlight following the cursor
+                ctaSection.addEventListener('mousemove', (e) => {
+                    const r = ctaSection.getBoundingClientRect();
+                    ctaSection.querySelector('.cta-spot').style.setProperty('--cx', `${e.clientX - r.left}px`);
+                    ctaSection.querySelector('.cta-spot').style.setProperty('--cy', `${e.clientY - r.top}px`);
+                });
+
+                // magnetic button
+                const magnet = document.getElementById('cta-magnet');
+                if (magnet && !CONFIG.isReducedMotion && window.matchMedia('(hover: hover)').matches) {
+                    magnet.addEventListener('mousemove', (e) => {
+                        const r = magnet.getBoundingClientRect();
+                        const dx = e.clientX - (r.left + r.width / 2);
+                        const dy = e.clientY - (r.top + r.height / 2);
+                        magnet.style.transform = `translate(${(dx * 0.18).toFixed(1)}px, ${(dy * 0.3).toFixed(1)}px)`;
+                    });
+                    magnet.addEventListener('mouseleave', () => { magnet.style.transform = 'translate(0, 0)'; });
+                }
+
+                // video: play only while visible, live timecode, pause control, parallax
+                const tcEl = document.getElementById('cta-timecode');
+                const toggleBtn = document.getElementById('cta-video-toggle');
+                const toggleIcon = document.getElementById('cta-video-icon');
+                const toggleLabel = document.getElementById('cta-video-label');
+                let ctaVisible = false;
+                let userPaused = CONFIG.isReducedMotion;
+                let tcStart = 0;
+                const pad = (n, l = 2) => String(Math.floor(n)).padStart(l, '0');
+                const fmtTc = (t) => `${pad(t / 3600)}:${pad((t % 3600) / 60)}:${pad(t % 60)}:${pad((t % 1) * 30)}`;
+                const tick = () => {
+                    if (!ctaVisible) return;
+                    if (tcEl && !userPaused) {
+                        const t = ctaVideo && ctaVideo.readyState >= 2 ? ctaVideo.currentTime : (performance.now() - tcStart) / 1000;
+                        tcEl.textContent = fmtTc(t);
+                    }
+                    requestAnimationFrame(tick);
+                };
+                const syncToggle = () => {
+                    if (!toggleBtn) return;
+                    toggleBtn.setAttribute('aria-pressed', userPaused ? 'true' : 'false');
+                    toggleIcon.setAttribute('icon', userPaused ? 'solar:play-bold' : 'solar:pause-bold');
+                    toggleLabel.textContent = userPaused ? 'Reproduzir vídeo' : 'Pausar vídeo';
+                };
+                new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        ctaVisible = entry.isIntersecting;
+                        if (ctaVisible) {
+                            tcStart = performance.now();
+                            if (ctaHud) ctaHud.classList.add('on');
+                            if (ctaVideo && !userPaused) { const pr = ctaVideo.play(); if (pr && pr.catch) pr.catch(() => {}); }
+                            requestAnimationFrame(tick);
+                        } else if (ctaVideo) {
+                            ctaVideo.pause();
+                        }
+                    });
+                }, { threshold: 0.1 }).observe(ctaSection);
+                if (toggleBtn && ctaVideo) {
+                    toggleBtn.addEventListener('click', () => {
+                        userPaused = !userPaused;
+                        if (userPaused) ctaVideo.pause(); else { const pr = ctaVideo.play(); if (pr && pr.catch) pr.catch(() => {}); }
+                        syncToggle();
+                    });
+                }
+                syncToggle();
+                if (!CONFIG.isReducedMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                    gsap.fromTo('#cta-video-wrap', { yPercent: -5, scale: 1.04 }, {
+                        yPercent: 5, scale: 1, ease: 'none',
+                        scrollTrigger: { trigger: '#comprar', start: 'top bottom', end: 'bottom top', scrub: true }
+                    });
+                }
+            }
+
+            const floatingMetaPill = document.getElementById('floating-meta-bar');
+            if (floatingMetaPill) {
+                ScrollTrigger.create({
+                    trigger: '#meta-impressao',
+                    start: 'bottom 20%',
+                    endTrigger: '#comprar',
+                    end: 'top 60%',
+                    onEnter: () => {
+                        floatingMetaPill.classList.remove('translate-y-28', 'opacity-0', 'pointer-events-none');
+                    },
+                    onLeaveBack: () => {
+                        floatingMetaPill.classList.add('translate-y-28', 'opacity-0', 'pointer-events-none');
+                    },
+                    onEnterBack: () => {
+                        floatingMetaPill.classList.remove('translate-y-28', 'opacity-0', 'pointer-events-none');
+                    },
+                    onLeave: () => {
+                        floatingMetaPill.classList.add('translate-y-28', 'opacity-0', 'pointer-events-none');
+                    }
+                });
+            }
+
+            // ====================================================
+            // 8. RESPONSIVENESS & RESIZE MANAGEMENT
+            // ====================================================
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    CONFIG.scrollDistance = window.innerHeight * (window.innerWidth < 768 ? 2.2 : 2.8);
+                    ScrollTrigger.refresh();
+                }, 200);
+            });
+
+            // Header blur background change on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    DOM.header.classList.add('shadow-sm', 'bg-[#EAEAE5]/95');
+                } else {
+                    DOM.header.classList.remove('shadow-sm', 'bg-[#EAEAE5]/95');
+                }
+            }, { passive: true });
+
+        });
+    </script>
+    <!-- Letter fade in/out (headlines 02 / 03) -->
+    <script>
+        (function () {
+            try {
+                if (typeof gsap === 'undefined' || !('IntersectionObserver' in window)) return;
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+                function splitChars(root) {
+                    root.setAttribute('aria-label', root.textContent.replace(/\s+/g, ' ').trim());
+                    const chars = [];
+                    (function walk(node) {
+                        Array.from(node.childNodes).forEach(function (child) {
+                            if (child.nodeType === 3) {
+                                const frag = document.createDocumentFragment();
+                                child.textContent.split(/(\s+)/).forEach(function (part) {
+                                    if (!part) return;
+                                    if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+                                    const w = document.createElement('span');
+                                    w.className = 'sf-word';
+                                    w.setAttribute('aria-hidden', 'true');
+                                    Array.from(part).forEach(function (ch) {
+                                        const c = document.createElement('span');
+                                        c.className = 'sf-char';
+                                        c.textContent = ch;
+                                        w.appendChild(c);
+                                        chars.push(c);
+                                    });
+                                    frag.appendChild(w);
+                                });
+                                child.replaceWith(frag);
+                            } else if (child.nodeType === 1 && child.tagName !== 'BR') {
+                                walk(child);
+                            }
+                        });
+                    })(root);
+                    return chars;
+                }
+
+                document.querySelectorAll('[data-split-fade]').forEach(function (el) {
+                    const chars = splitChars(el);
+                    const tween = gsap.fromTo(chars,
+                        { opacity: 0, yPercent: 45, filter: 'blur(8px)' },
+                        { opacity: 1, yPercent: 0, filter: 'blur(0px)', duration: 0.8, ease: 'power3.out',
+                          stagger: { each: 0.022 }, paused: true });
+                    new IntersectionObserver(function (entries) {
+                        entries.forEach(function (e) {
+                            if (e.isIntersecting) tween.timeScale(1).play();
+                            else tween.timeScale(1.8).reverse();
+                        });
+                    }, { rootMargin: '-6% 0px -6% 0px', threshold: 0.01 }).observe(el);
+                });
+            } catch (err) {
+                document.querySelectorAll('.sf-char').forEach(function (el) {
+                    el.style.opacity = 1; el.style.filter = 'none'; el.style.transform = 'none';
+                });
+                console.warn('letter-fade disabled:', err);
+            }
+        })();
+    </script>
+</body>
+
+</html>
