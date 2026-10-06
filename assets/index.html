@@ -441,14 +441,22 @@
             width: calc(var(--hv) * 16 / 9);
             left: calc(var(--book-x) - var(--hv) * 8 / 9);
             top: calc(var(--hdr) + 4px);
-            -webkit-mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent), linear-gradient(to bottom, transparent, #000 5%, #000 95%, transparent);
-            -webkit-mask-composite: source-in;
-            mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent), linear-gradient(to bottom, transparent, #000 5%, #000 95%, transparent);
-            mask-composite: intersect;
         }
+        .hero-video-box video { transform: translateZ(0); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        /* Borda esmaecida: em vez de mascarar o <video> (custo a cada frame), cobre as bordas com o
+           mesmo degradê do fundo da página. A máscara fica numa camada estática (barata). */
+        .hero-video-box::after {
+            content: ""; position: absolute; inset: 0; pointer-events: none;
+            background: linear-gradient(180deg, #e1e4e3 0%, #e4e6e5 50%, #e7eae9 100%);
+            background-size: 100% 100svh; background-position: 0 calc(-1 * (var(--hdr) + 4px));
+            -webkit-mask-image: linear-gradient(to right, #000, transparent 9%, transparent 91%, #000), linear-gradient(to bottom, #000, transparent 5%, transparent 95%, #000);
+            mask-image: linear-gradient(to right, #000, transparent 9%, transparent 91%, #000), linear-gradient(to bottom, #000, transparent 5%, transparent 95%, #000);
+        }
+        /* blend modes sobre vídeo em movimento forçam recomposição total a cada frame */
+        #hero-ghost, #hero-pin-container > .bg-grid { mix-blend-mode: normal !important; }
         .hero-rings {
             position: absolute; left: var(--book-x); top: calc(var(--hdr) + 4px + var(--hv) / 2);
-            width: var(--hv); height: var(--hv); transform: translate(-50%, -50%); mix-blend-mode: multiply;
+            width: var(--hv); height: var(--hv); transform: translate(-50%, -50%);
         }
         @media (min-width: 1024px) {
             /* o vídeo ocupa toda a altura útil abaixo do header */
@@ -456,19 +464,52 @@
         }
 
         @media (max-width: 767px) {
-            /* vídeo ocupa a tela inteira na vertical (100svh), cortando as laterais */
+            /* fundo escuro (igual à última dobra): nunca aparece "flash" claro antes do vídeo carregar */
+            #hero-pin-container { background: #1c1917 !important; }
+
+            /* texto: centralizado na vertical, alinhado à esquerda (simétrico em relação ao header) */
+            #hero-content { align-items: center; padding-top: 6rem; padding-bottom: 6rem; }
+
+            /* vídeo ocupa a tela inteira, cortando as laterais, em camada própria da GPU */
             #hero-stage { --hv: 100svh; }
             .hero-video-box {
                 inset: 0; left: 0; top: 0; width: 100%; height: 100%;
                 -webkit-mask-image: none; mask-image: none;
             }
-            .hero-video-box video { object-fit: cover; object-position: 50% 50%; }
-            .hero-rings { top: 34%; width: 80vw; height: 80vw; }
-            /* véu CLARO (não preto) só para dar leitura ao texto na parte de baixo */
+            .hero-video-box::after { display: none; }
+            .hero-video-box video {
+                object-fit: cover; object-position: 50% 50%;
+                transform: translateZ(0); backface-visibility: hidden; -webkit-backface-visibility: hidden;
+            }
+
+            /* efeitos que forçam recomposição a cada frame do vídeo (principal causa de travada) */
+            .hero-rings { display: none; }
+            #hero-pin-container > .bg-grid { display: none; }
+            #main-header { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; background: rgba(234, 234, 229, 0.97) !important; }
+            #hero-eyebrow span, #hero-cta-group .glass-pill { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+            #hero-cta-group .glass-pill { background: rgba(255, 255, 255, 0.92); }
+
+            /* MÁSCARA NEGRA sobre o vídeo (mesma receita da última dobra) */
             #hero-stage::after {
                 content: ""; position: absolute; inset: 0; pointer-events: none;
-                background: linear-gradient(to top, rgba(231,234,233,0.94) 0%, rgba(231,234,233,0.78) 34%, rgba(231,234,233,0) 62%);
+                background:
+                    linear-gradient(to bottom, rgba(28, 25, 23, 0.9) 0, rgba(28, 25, 23, 0) 130px),
+                    linear-gradient(to top, rgba(28, 25, 23, 0.95) 0, rgba(28, 25, 23, 0) 150px),
+                    radial-gradient(ellipse at center, rgba(28, 25, 23, 0) 0%, rgba(28, 25, 23, 0.55) 55%, rgba(28, 25, 23, 0.95) 100%),
+                    rgba(28, 25, 23, 0.65);
             }
+
+            /* tipografia clara sobre a máscara escura */
+            #hero-pin-container .hero-title { color: #fff; }
+            #hero-pin-container .hl:not(.hl-out) { text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45); }
+            #hero-pin-container .hero-byline { color: #d6d3d1; }
+            #hero-pin-container .hero-byline .text-stone-400 { color: #a8a29e; }
+            #hero-pin-container .hero-byline-rule { box-shadow: none; }
+            #hero-description p:first-child { color: rgba(255, 255, 255, 0.92); }
+            #hero-description p + p { color: #d6d3d1; border-left-color: rgba(255, 255, 255, 0.3); }
+        }
+        @media (max-width: 767px) and (max-height: 600px) {
+            #hero-content { padding-top: 5rem; padding-bottom: 1rem; }
         }
 
         .hero-rings i {
@@ -669,7 +710,7 @@
                 aria-hidden="true">NÃO SE CALE &mdash; NÃO SE CALE &mdash; NÃO SE CALE</div>
 
             <!-- 2. MAIN HERO CONTENT CONTAINER (COMPACTO, EDITORIAL, ALINHADO À REFERÊNCIA) -->
-            <div
+            <div id="hero-content"
                 class="relative z-30 w-full max-w-[1520px] mx-auto px-6 md:px-12 lg:px-16 pt-24 pb-5 lg:pt-[88px] lg:pb-6 flex items-end lg:items-center justify-between h-full pointer-events-none">
 
                 <!-- LEFT CONTENT BLOCK: COMPACT, EDITORIAL, POWERFUL -->
@@ -1527,7 +1568,9 @@
                 scrollDistance: window.innerHeight * 2.8, // Section length for smooth scrubbing
                 videoDurationFallback: 4.205, // Extracted MP4 metadata duration
                 minTimeDelta: 0.02,           // Prevent redundant video seeks
-                isReducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                isReducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+                // Mobile: sem "scrub" por seek (trava em celular). O vídeo roda normalmente, em loop.
+                isMobile: window.matchMedia('(max-width: 767px)').matches
             };
 
             // ====================================================
@@ -1552,12 +1595,13 @@
 
             // Register GSAP plugins
             gsap.registerPlugin(ScrollTrigger);
+            ScrollTrigger.config({ ignoreMobileResize: true });
 
             // ====================================================
             // 3. LENIS SMOOTH SCROLL INTEGRATION
             // ====================================================
             let lenis = null;
-            if (!CONFIG.isReducedMotion && typeof Lenis !== 'undefined') {
+            if (!CONFIG.isReducedMotion && !CONFIG.isMobile && typeof Lenis !== 'undefined') {
                 lenis = new Lenis({
                     duration: 1.15,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -1588,15 +1632,12 @@
                 if (DOM.video.duration && !isNaN(DOM.video.duration)) {
                     currentVideoDuration = DOM.video.duration;
                 }
-                // Prime the first frame cleanly
-                DOM.video.currentTime = 0;
+                // Prime the first frame cleanly (só no desktop, onde o vídeo é controlado pelo scroll)
+                DOM.video.currentTime = targetVideoTime; // mantém a posição se o src for trocado pelo blob
             }
 
-            if (DOM.video.readyState >= 1) {
-                onVideoMetadataReady();
-            } else {
-                DOM.video.addEventListener('loadedmetadata', onVideoMetadataReady);
-            }
+            if (DOM.video.readyState >= 1) onVideoMetadataReady();
+            DOM.video.addEventListener('loadedmetadata', onVideoMetadataReady);
 
             // Seeking guard event listener
             DOM.video.addEventListener('seeked', () => {
@@ -1611,9 +1652,10 @@
             function scrubRenderLoop(now) {
                 if (!CONFIG.isReducedMotion && DOM.video) {
                     const diff = targetVideoTime - smoothTime;
-                    smoothTime = Math.abs(diff) < 0.002 ? targetVideoTime : smoothTime + diff * 0.2;
+                    smoothTime = Math.abs(diff) < 0.002 ? targetVideoTime : smoothTime + diff * 0.25;
                     if (isSeeking && now - lastSeekAt > 250) isSeeking = false; // trava de segurança
-                    if (!isSeeking && Math.abs(DOM.video.currentTime - smoothTime) > 0.004) {
+                    const seekStep = smoothTime !== targetVideoTime ? 0.03 : 0.004; // no máx. ~1 seek por frame de vídeo
+                    if (!isSeeking && Math.abs(DOM.video.currentTime - smoothTime) > seekStep) {
                         isSeeking = true;
                         lastSeekAt = now;
                         DOM.video.currentTime = smoothTime;
@@ -1622,6 +1664,36 @@
                 rafId = requestAnimationFrame(scrubRenderLoop);
             }
             rafId = requestAnimationFrame(scrubRenderLoop);
+
+            if (!CONFIG.isReducedMotion) {
+                // ---- SCRUB FLUIDO (desktop e mobile) ----
+                // 1) baixa o vídeo inteiro para a memória (blob): os seeks passam a ser locais,
+                //    sem requisição de rede a cada frame. Usa a versão all-intra (_d desktop / _m mobile)
+                //    se existir; senão cai no arquivo original.
+                (async () => {
+                    const light = CONFIG.isMobile ? 'raw_files/nao_se_cale3_m.mp4' : 'raw_files/nao_se_cale3_d.mp4';
+                    const candidates = [light, DOM.video.getAttribute('src')];
+                    for (const url of candidates) {
+                        try {
+                            const r = await fetch(url);
+                            if (!r.ok) continue;
+                            const blobUrl = URL.createObjectURL(await r.blob());
+                            DOM.video.src = blobUrl;
+                            DOM.video.load();
+                            return;
+                        } catch (e) { /* tenta o próximo */ }
+                    }
+                })();
+                // 2) iOS só passa a desenhar frames "pausados" depois de um play() liberado por toque
+                if (CONFIG.isMobile) {
+                    const unlockVideo = () => {
+                        const pr = DOM.video.play();
+                        const stop = () => { DOM.video.pause(); DOM.video.currentTime = smoothTime; };
+                        if (pr && pr.then) pr.then(stop).catch(() => {}); else stop();
+                    };
+                    window.addEventListener('touchstart', unlockVideo, { once: true, passive: true });
+                }
+            }
 
             // ====================================================
             // 5. HERO ENTRANCE ANIMATION (On Page Load)
@@ -1632,7 +1704,7 @@
                     // Instantly visible
                     gsap.set([DOM.eyebrow, DOM.description, DOM.ctaGroup, DOM.rightIndicator, DOM.scrollIndicator], {
                         opacity: 1,
-                        filter: 'blur(0px)',
+                        filter: CONFIG.isMobile ? 'none' : 'blur(0px)',
                         y: 0
                     });
                     DOM.headlineGroup.classList.add('reveal-active');
@@ -1647,12 +1719,12 @@
                 // Set initial states
                 gsap.set([DOM.eyebrow, DOM.description, DOM.ctaGroup], {
                     opacity: 0,
-                    filter: 'blur(12px)',
+                    filter: CONFIG.isMobile ? 'none' : 'blur(12px)',
                     y: 20
                 });
                 gsap.set([DOM.rightIndicator, DOM.scrollIndicator], {
                     opacity: 0,
-                    filter: 'blur(8px)',
+                    filter: CONFIG.isMobile ? 'none' : 'blur(8px)',
                     y: 15
                 });
 
@@ -1663,25 +1735,25 @@
                 introTl
                     .to(DOM.eyebrow, {
                         opacity: 1,
-                        filter: 'blur(0px)',
+                        filter: CONFIG.isMobile ? 'none' : 'blur(0px)',
                         y: 0,
                         duration: 0.8
                     }, 0.2)
                     .to(DOM.description, {
                         opacity: 1,
-                        filter: 'blur(0px)',
+                        filter: CONFIG.isMobile ? 'none' : 'blur(0px)',
                         y: 0,
                         duration: 0.85
                     }, 0.45)
                     .to(DOM.ctaGroup, {
                         opacity: 1,
-                        filter: 'blur(0px)',
+                        filter: CONFIG.isMobile ? 'none' : 'blur(0px)',
                         y: 0,
                         duration: 0.9
                     }, 0.65)
                     .to([DOM.rightIndicator, DOM.scrollIndicator], {
                         opacity: 1,
-                        filter: 'blur(0px)',
+                        filter: CONFIG.isMobile ? 'none' : 'blur(0px)',
                         y: 0,
                         duration: 0.95,
                         stagger: 0.15
@@ -1748,21 +1820,21 @@
                     // Phase 1 (0 -> 45% progress): Text dissolves gracefully
                     .to(DOM.ctaGroup, {
                         opacity: 0,
-                        filter: 'blur(10px)',
+                        filter: CONFIG.isMobile ? 'none' : 'blur(10px)',
                         y: -18,
                         duration: 0.25,
                         ease: 'power2.in'
                     }, 0.08)
                     .to(DOM.description, {
                         opacity: 0,
-                        filter: 'blur(12px)',
+                        filter: CONFIG.isMobile ? 'none' : 'blur(12px)',
                         y: -22,
                         duration: 0.28,
                         ease: 'power2.in'
                     }, 0.12)
                     .to(DOM.headlineGroup, {
                         opacity: 0,
-                        filter: 'blur(16px)',
+                        filter: CONFIG.isMobile ? 'none' : 'blur(16px)',
                         y: -30,
                         scale: 0.97,
                         duration: 0.35,
@@ -1770,7 +1842,7 @@
                     }, 0.18)
                     .to(DOM.eyebrow, {
                         opacity: 0,
-                        filter: 'blur(12px)',
+                        filter: CONFIG.isMobile ? 'none' : 'blur(12px)',
                         y: -20,
                         duration: 0.3,
                         ease: 'power2.in'
