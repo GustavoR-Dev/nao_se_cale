@@ -512,6 +512,72 @@
             #hero-content { padding-top: 5rem; padding-bottom: 1rem; }
         }
 
+        /* ==========================================================
+           AJUSTES EXCLUSIVOS TABLET (768px – 1023px)
+           Mobile (≤767px) e desktop (≥1024px) não são afetados.
+        ========================================================== */
+        @media (min-width: 768px) and (max-width: 1023px) {
+
+            /* ---- Header: cabe em uma linha, sem quebrar marca nem menu ---- */
+            #main-header > div { padding-left: 1.5rem; padding-right: 1.5rem; gap: 1rem; }
+            #main-header > div > a[href="#"] { flex-shrink: 0; }
+            #main-header > div > a[href="#"] span { white-space: nowrap; }
+            #main-header nav { gap: 1.25rem; flex-shrink: 0; }
+            #main-header nav a { white-space: nowrap; font-size: 11px; }
+            #main-header .hdr-badge { display: none; }
+            #main-header > div > div:last-child { gap: 0; flex-shrink: 0; }
+            #main-header > div > div:last-child a { white-space: nowrap; padding: 0.7rem 1.1rem; }
+
+            /* ---- Hero: tipografia e botões (valem para retrato e paisagem) ---- */
+            #hero-eyebrow { gap: 0.5rem; margin-bottom: 1rem; }
+            #hero-eyebrow > span { font-size: 12px; padding: 0.3rem 0.8rem; }
+            #hero-headline-group { margin-bottom: 1.25rem; }
+            #hero-pin-container .hero-byline { font-size: 12px; margin-top: 0.875rem; }
+            #hero-description { margin-bottom: 1.5rem; }
+            #hero-description p:first-child { font-size: 1.0625rem; line-height: 1.45; }
+            #hero-description p + p { font-size: 12.5px; line-height: 1.55; margin-top: 0.75rem; }
+
+            /* botões com área de toque confortável (≥ 48px) */
+            #hero-cta-group { gap: 0.875rem; }
+            #hero-cta-group a { padding-top: 1rem; padding-bottom: 1rem; padding-left: 1.5rem; padding-right: 1.5rem; }
+            #hero-cta-group a span.font-mono { font-size: 13px; }
+            #hero-cta-group .glass-pill { font-size: 13px; }
+        }
+
+        /* ---- Tablet em RETRATO: texto à esquerda e livro à direita, hero com a altura do conteúdo ---- */
+        @media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+            /* a hero deixa de ocupar 100% da tela: a altura é a do conteúdo (sem faixas vazias em cima/embaixo) */
+            #hero-pin-container, #hero-stage { --hv: min(70vw, 62svh); --book-x: 73vw; }
+            #hero-pin-container { height: auto; background: #e4e6e5 !important; }
+            #hero-content {
+                height: auto; align-items: center; justify-content: flex-start;
+                padding: 5.5rem 2rem 3rem;
+                min-height: calc(var(--hv) * 0.8 + 11rem); /* garante espaço para o livro, mesmo com pouco texto */
+            }
+            /* quadro do vídeo centrado na área útil (abaixo do header), alinhado ao bloco de texto */
+            #hero-stage .hero-video-box { top: calc(50% + 24px - var(--hv) / 2); }
+            #hero-stage .hero-video-box::after { background: #e4e6e5; }
+            #hero-stage .hero-rings { top: calc(50% + 24px); }
+            /* não há mais "scroll to control" fixo: o vídeo acompanha a rolagem normal da página */
+            #hero-scroll-indicator { display: none !important; }
+
+            #hero-text-block { max-width: min(46vw, 400px); }
+            #hero-pin-container .hero-title { font-size: clamp(4.5rem, min(13vw, 10svh), 8rem); }
+            #hero-description { max-width: none; }
+        }
+
+        /* ---- Tablet / janela estreita em PAISAGEM: mesmo esquema do desktop ---- */
+        @media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+            #hero-stage { --book-x: 68vw; --hv: min(calc(100svh - var(--hdr) - 8px), 44vw); }
+            #hero-content { align-items: center; padding-top: 88px; padding-bottom: 1.5rem; padding-left: 2rem; padding-right: 2rem; }
+            #hero-text-block { max-width: min(46vw, 520px); }
+            #hero-pin-container .hero-title { font-size: clamp(3.5rem, min(8.5vw, 15svh), 6rem); }
+            #hero-description { max-width: 440px; margin-bottom: 1.25rem; }
+            #hero-description p:first-child { font-size: 0.9375rem; }
+            /* o aviso de pré-venda continua visível (há altura de sobra ao lado do livro) */
+            #hero-description p + p { display: block; }
+        }
+
         .hero-rings i {
             position: absolute; inset: 14%; border-radius: 9999px;
             border: 1.5px solid rgba(150, 200, 0, 0.6); opacity: 0;
@@ -619,6 +685,65 @@
         @media (prefers-reduced-motion: reduce) {
             .sf-char { opacity: 1 !important; transform: none !important; filter: none !important; }
         }
+
+        /* ==========================================================
+           AJUSTES EXCLUSIVOS MOBILE (≤ 767px) — desktop/tablet intactos
+        ========================================================== */
+        .author-eyebrow-m { display: none; }
+
+        @media (max-width: 767px) {
+
+            /* ---- 02 / Meta de Impressão: título sempre em UMA linha ---- */
+            #meta-impressao .meta-card { container-type: inline-size; }
+            #meta-impressao .meta-head { gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: nowrap; }
+            #meta-impressao .meta-head-main { gap: 0.625rem; min-width: 0; flex: 1 1 0%; }
+            #meta-impressao .meta-icon { width: 2.25rem; height: 2.25rem; border-radius: 0.75rem; flex-shrink: 0; }
+            #meta-impressao .meta-icon iconify-icon { font-size: 1.05rem; }
+            #meta-impressao .meta-title {
+                white-space: nowrap; min-width: 0; overflow: hidden; text-overflow: ellipsis; /* nunca invade o selo */
+                font-size: clamp(0.8125rem, 4vw, 1rem);
+                line-height: 1.3; /* folga p/ descendentes (p, ç) não cortarem com overflow */
+                letter-spacing: -0.015em;
+            }
+            #meta-impressao .meta-pill {
+                flex-shrink: 0; gap: 0.3rem; padding: 0.3rem 0.5rem;
+                font-size: clamp(8px, 2.4vw, 10px); letter-spacing: 0; white-space: nowrap;
+            }
+            #meta-impressao .meta-pill > span:first-child { width: 0.3125rem; height: 0.3125rem; }
+            #meta-impressao .flashlight-card { padding: 1.25rem; }
+            /* card estreito: o ícone decorativo some para título + selo caberem lado a lado, sem sobreposição */
+            @container (max-width: 285px) {
+                #meta-impressao .meta-icon { display: none; }
+            }
+
+            /* ---- 04 / O Autor ---- */
+            /* eyebrow sobe para ACIMA da foto */
+            .author-eyebrow-m { display: flex; margin-bottom: 1.75rem; }
+            /* a moldura da foto usava h-full (100% da coluna); com o eyebrow acima, ela passava
+               da coluna e o card de texto subia sobre a imagem. No mobile a altura vem do conteúdo. */
+            #autor .author-frame { height: auto; }
+            #autor #author-card { height: auto; }
+            /* nome grande (h2) + chips Pastor/Teólogo/Escritor saem do mobile.
+               O h2 fica só para leitores de tela / SEO (fora do fluxo, não ocupa espaço) */
+            #autor .author-head {
+                position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+                overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+            }
+            #autor .author-eyebrow-d, #autor .author-chips { display: none; }
+            /* cards de obras saem do mobile */
+            #autor .author-works { display: none; }
+            /* com o cabeçalho e as obras fora, o respiro entre foto e bio fica mais justo */
+            #autor .grid { gap: 2rem; }
+
+            /* ---- 05 / FAQ ---- */
+            /* "FREQUENTES" (≈6,3em de largura) calculado para caber na largura útil da tela (100vw − 48px de padding) */
+            #faq .faq-title { font-size: min(3.75rem, calc((100vw - 3rem) / 6.9)); letter-spacing: -0.045em; line-height: 0.92; }
+            #faq .faq-title .text-reveal-wrapper { max-width: 100%; }
+            /* texto de apoio sai do mobile */
+            #faq .faq-intro { display: none; }
+            /* sem o texto, o card de contato sobe e encosta melhor no título */
+            #faq .faq-contact { margin-top: 1.75rem; max-width: none; }
+        }
     </style>
 </head>
 
@@ -667,7 +792,7 @@
             <!-- Right: Badge & Quick CTA -->
             <div class="flex items-center gap-4">
                 <span
-                    class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 bg-stone-900 text-[#ccff00] rounded-full text-[11px] font-mono font-semibold uppercase tracking-tight">
+                    class="hdr-badge hidden sm:inline-flex items-center gap-1.5 px-3 py-1 bg-stone-900 text-[#ccff00] rounded-full text-[11px] font-mono font-semibold uppercase tracking-tight">
                     <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span>
                     2ª Edição
                 </span>
@@ -867,24 +992,24 @@
 
                 <!-- RIGHT: Progress Card -->
                 <div class="lg:col-span-7">
-                    <div class="relative bg-white/95 backdrop-blur-xl border border-stone-300/80 rounded-3xl shadow-xl p-6 sm:p-8 flashlight-card overflow-hidden group hover:shadow-2xl transition-all duration-500"
+                    <div class="meta-card relative bg-white/95 backdrop-blur-xl border border-stone-300/80 rounded-3xl shadow-xl p-6 sm:p-8 flashlight-card overflow-hidden group hover:shadow-2xl transition-all duration-500"
                         onmousemove="const rect = this.getBoundingClientRect(); this.style.setProperty('--mouse-x', `${event.clientX - rect.left}px`); this.style.setProperty('--mouse-y', `${event.clientY - rect.top}px`);">
 
                         <!-- Top Row: Icon + Meta Title + Live Status -->
-                        <div class="flex items-center justify-between gap-4 mb-6">
-                            <div class="flex items-center gap-3.5">
+                        <div class="meta-head flex items-center justify-between gap-4 mb-6">
+                            <div class="meta-head-main flex items-center gap-3.5">
                                 <div
-                                    class="w-11 h-11 rounded-2xl bg-[#ccff00]/25 text-stone-900 flex items-center justify-center text-xl border border-[#ccff00]/50 shadow-sm shrink-0">
+                                    class="meta-icon w-11 h-11 rounded-2xl bg-[#ccff00]/25 text-stone-900 flex items-center justify-center text-xl border border-[#ccff00]/50 shadow-sm shrink-0">
                                     <iconify-icon icon="solar:printer-minimalistic-bold"
                                         class="text-xl text-stone-900"></iconify-icon>
                                 </div>
-                                <h3 class="text-base sm:text-lg font-bold text-stone-900 tracking-tight leading-snug">
+                                <h3 class="meta-title text-base sm:text-lg font-bold text-stone-900 tracking-tight leading-snug">
                                     Meta de Impress&#xE3;o 
                                 </h3>
                             </div>
                             <!-- Status Pill -->
                             <span
-                                class="inline-flex items-center gap-1.5 px-3 py-1 bg-stone-900 text-[#ccff00] rounded-full text-xs font-mono font-bold uppercase tracking-tight shadow-sm shrink-0">
+                                class="meta-pill inline-flex items-center gap-1.5 px-3 py-1 bg-stone-900 text-[#ccff00] rounded-full text-xs font-mono font-bold uppercase tracking-tight shadow-sm shrink-0">
                                 <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-ping"></span>
                                 Em Andamento
                             </span>
@@ -1168,7 +1293,12 @@
 
                 <!-- LEFT: Portrait -->
                 <div class="lg:col-span-5 relative author-stage reveal">
-                    <div class="relative h-full">
+                    <!-- MOBILE: eyebrow acima da foto -->
+                    <div class="author-eyebrow-m items-center gap-3">
+                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500">04 / O AUTOR</span>
+                        <span class="w-12 h-[1px] bg-stone-300"></span>
+                    </div>
+                    <div class="author-frame relative h-full">
                         <div id="author-card"
                             class="group relative h-full min-h-[460px] sm:min-h-[560px] lg:min-h-[640px] rounded-2xl bg-stone-900 shadow-2xl flashlight-card cursor-crosshair">
 
@@ -1222,8 +1352,8 @@
                 <!-- RIGHT: Content -->
                 <div class="lg:col-span-7 flex flex-col justify-between gap-8 author-stage">
 
-                    <div>
-                        <div class="reveal flex items-center gap-3 mb-4">
+                    <div class="author-head">
+                        <div class="author-eyebrow-d reveal flex items-center gap-3 mb-4">
                             <span class="text-xs font-mono uppercase tracking-widest text-stone-500">04 / O AUTOR</span>
                             <span class="w-12 h-[1px] bg-stone-300"></span>
                         </div>
@@ -1233,7 +1363,7 @@
                             <span class="block text-reveal-wrapper"><span class="text-reveal-content delay-100 transparent-text-outline">Elian</span></span>
                         </h2>
 
-                        <div class="mt-6 flex flex-wrap gap-2">
+                        <div class="author-chips mt-6 flex flex-wrap gap-2">
                             <span class="reveal delay-200 author-chip">Pastor</span>
                             <span class="reveal delay-300 author-chip">Teólogo</span>
                             <span class="reveal delay-500 author-chip">Escritor</span>
@@ -1245,7 +1375,7 @@
                         <p data-scrub class="mt-5 text-sm sm:text-[15px] text-stone-600 leading-relaxed">Dedicado ao ensino e à pregação da Palavra. Rafael também se expressa por meio da escrita, sendo autor de obras como Antes do Compromisso e Suficiente. Sua jornada é marcada pelo compromisso de anunciar a mensagem da Graça por onde Deus o conduz, inspirando pessoas a viverem uma fé autêntica e transformadora.</p>
                     </div>
 
-                    <div class="reveal delay-300">
+                    <div class="author-works reveal delay-300">
                         <div class="flex items-center gap-3 mb-3">
                             <span class="text-xs font-mono uppercase tracking-widest text-stone-500 font-bold">Obras</span>
                             <span class="flex-1 h-[1px] bg-stone-300"></span>
@@ -1293,16 +1423,16 @@
                         <span class="w-12 h-[1px] bg-stone-300"></span>
                     </div>
 
-                    <h2 class="text-6xl sm:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-stone-900">
+                    <h2 class="faq-title text-6xl sm:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-stone-900">
                         <span class="block text-reveal-wrapper"><span class="text-reveal-content">Dúvidas</span></span>
                         <span class="block text-reveal-wrapper"><span class="text-reveal-content delay-100 transparent-text-outline">Frequentes</span></span>
                     </h2>
 
-                    <p class="reveal delay-200 mt-6 max-w-md text-sm sm:text-base text-stone-600 leading-relaxed">
+                    <p class="faq-intro reveal delay-200 mt-6 max-w-md text-sm sm:text-base text-stone-600 leading-relaxed">
                         Tudo o que você precisa saber sobre a pré-venda, a entrega e o pagamento &mdash; antes de garantir o seu exemplar.
                     </p>
 
-                    <div class="reveal delay-300 mt-8 relative overflow-hidden rounded-2xl bg-stone-900 text-white p-6 shadow-2xl flashlight-card max-w-md">
+                    <div class="faq-contact reveal delay-300 mt-8 relative overflow-hidden rounded-2xl bg-stone-900 text-white p-6 shadow-2xl flashlight-card max-w-md">
                         <div class="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[#ccff00]/20 blur-3xl animate-pulse-subtle"></div>
                         <div class="relative z-10">
                             <span class="inline-flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-[#ccff00]">
@@ -1570,8 +1700,14 @@
                 minTimeDelta: 0.02,           // Prevent redundant video seeks
                 isReducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
                 // Mobile: sem "scrub" por seek (trava em celular). O vídeo roda normalmente, em loop.
-                isMobile: window.matchMedia('(max-width: 767px)').matches
+                isMobile: window.matchMedia('(max-width: 767px)').matches,
+                // Tablet em retrato: a hero tem a altura do conteúdo, então não é fixada (pin) na tela;
+                // o vídeo acompanha a rolagem enquanto ela sobe, sem deixar áreas vazias.
+                isTabletPortrait: window.matchMedia('(min-width: 768px) and (max-width: 1023px) and (orientation: portrait)').matches
             };
+            // trocar de retrato/paisagem em tablet muda o modo da hero: recarrega para recriar o ScrollTrigger
+            window.matchMedia('(min-width: 768px) and (max-width: 1023px) and (orientation: portrait)')
+                .addEventListener('change', (e) => { if (e.matches !== CONFIG.isTabletPortrait) location.reload(); });
 
             // ====================================================
             // 2. DOM CACHING
@@ -1773,8 +1909,8 @@
                 scrollTrigger: {
                     trigger: DOM.heroTrack,
                     start: 'top top',
-                    end: () => `+=${CONFIG.scrollDistance}`,
-                    pin: DOM.heroPin,
+                    end: () => CONFIG.isTabletPortrait ? `+=${Math.round(DOM.heroPin.offsetHeight * 0.7)}` : `+=${CONFIG.scrollDistance}`,
+                    pin: CONFIG.isTabletPortrait ? false : DOM.heroPin,
                     pinSpacing: true,
                     scrub: 0.6,
                     anticipatePin: 1,
