@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Anton&display=swap"
         rel="stylesheet">
 
     <!-- Tailwind CSS CDN -->
@@ -366,6 +366,18 @@
             box-shadow: 0 1px 2px rgba(28,25,23,0.04);
             transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1), background-color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease, color 0.6s ease;
         }
+        /* Desktop: os 4 cards se distribuem na altura da coluna da esquerda (título + card "Ainda com dúvida?") */
+        @media (min-width: 1024px) {
+            #faq-list .faq-item { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: center; min-height: 5.5rem; }
+            /* o card aberto cresce com o conteúdo (nunca corta a resposta) */
+            #faq-list .faq-item .faq-trigger, #faq-list .faq-item .faq-panel { flex-shrink: 0; }
+        }
+        /* Desktop: o título se ajusta à largura da coluna (antes cortava o "S" de "Frequentes") */
+        @media (min-width: 1024px) {
+            #faq .faq-head { container-type: inline-size; }
+            #faq .faq-title { font-size: min(7.5rem, 12.6cqw); letter-spacing: -0.045em; }
+            #faq .faq-title .text-reveal-wrapper { padding-right: 0.05em; max-width: 100%; }
+        }
         .faq-item.active:hover:not(.is-open) { transform: translateX(6px); border-color: rgba(28,25,23,0.4); background: #fff; }
         .faq-item.is-open { background: #1c1917; border-color: #1c1917; color: #fff; box-shadow: 0 25px 50px -12px rgba(28,25,23,0.35); }
 
@@ -500,11 +512,6 @@
             }
 
             /* tipografia clara sobre a máscara escura */
-            #hero-pin-container .hero-title { color: #fff; }
-            #hero-pin-container .hl:not(.hl-out) { text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45); }
-            #hero-pin-container .hero-byline { color: #d6d3d1; }
-            #hero-pin-container .hero-byline .text-stone-400 { color: #a8a29e; }
-            #hero-pin-container .hero-byline-rule { box-shadow: none; }
             #hero-description p:first-child { color: rgba(255, 255, 255, 0.92); }
             #hero-description p + p { color: #d6d3d1; border-left-color: rgba(255, 255, 255, 0.3); }
         }
@@ -532,7 +539,6 @@
             #hero-eyebrow { gap: 0.5rem; margin-bottom: 1rem; }
             #hero-eyebrow > span { font-size: 12px; padding: 0.3rem 0.8rem; }
             #hero-headline-group { margin-bottom: 1.25rem; }
-            #hero-pin-container .hero-byline { font-size: 12px; margin-top: 0.875rem; }
             #hero-description { margin-bottom: 1.5rem; }
             #hero-description p:first-child { font-size: 1.0625rem; line-height: 1.45; }
             #hero-description p + p { font-size: 12.5px; line-height: 1.55; margin-top: 0.75rem; }
@@ -562,7 +568,6 @@
             #hero-scroll-indicator { display: none !important; }
 
             #hero-text-block { max-width: min(46vw, 400px); }
-            #hero-pin-container .hero-title { font-size: clamp(4.5rem, min(13vw, 10svh), 8rem); }
             #hero-description { max-width: none; }
         }
 
@@ -571,7 +576,6 @@
             #hero-stage { --book-x: 68vw; --hv: min(calc(100svh - var(--hdr) - 8px), 44vw); }
             #hero-content { align-items: center; padding-top: 88px; padding-bottom: 1.5rem; padding-left: 2rem; padding-right: 2rem; }
             #hero-text-block { max-width: min(46vw, 520px); }
-            #hero-pin-container .hero-title { font-size: clamp(3.5rem, min(8.5vw, 15svh), 6rem); }
             #hero-description { max-width: 440px; margin-bottom: 1.25rem; }
             #hero-description p:first-child { font-size: 0.9375rem; }
             /* o aviso de pré-venda continua visível (há altura de sobra ao lado do livro) */
@@ -593,49 +597,87 @@
 
         #hero-ghost { -webkit-text-stroke: 1.5px rgba(28, 28, 28, 0.075); color: transparent; will-change: transform; }
 
+        /* ==========================================================
+           TÍTULO NA TIPOGRAFIA DA CAPA (Anton + verde da capa #84C800)
+           Letras com altura/rotação irregulares, "SE" empilhado, borda
+           e grão de tinta (filtro #ink-rough) e entrada tipo carimbo.
+        ========================================================== */
+        :root { --book-green: #84c800; --book-green-hi: #9ae000; --book-ink: #1c1917; }
+        #hero-headline-group { container-type: inline-size; }
+
         .hero-title {
-            font-size: clamp(4rem, 19vw, 6.25rem);
-            line-height: 0.9; font-weight: 900; letter-spacing: -0.045em;
-            text-transform: uppercase; color: #1c1917;
+            font-family: 'Anton', 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+            font-weight: 400; text-transform: uppercase; line-height: 0.86; letter-spacing: 0;
+            font-size: min(22.5cqw, 21svh);
+            display: flex; align-items: baseline; justify-content: flex-start; gap: 0.035em;
+            padding: 0.14em 0 0.17em; margin: 0;
+            color: var(--book-green);
+            filter: url(#ink-rough);
         }
-        @media (min-width: 1024px) { .hero-title { font-size: clamp(4.25rem, min(9.6vw, 17svh), 11rem); } }
+        .hero-word { display: inline-flex; align-items: baseline; gap: 0.035em; }
+
+        /* verde com contorno de tinta (legível sobre o fundo claro) / "branco" da capa = tinta escura */
+        .hl, .hs { font-family: inherit; }
+        .g { color: var(--book-green); -webkit-text-stroke: 0.045em var(--book-ink); paint-order: stroke fill; }
+        .w { color: var(--book-ink); }
 
         .hl {
-            display: inline-block; transform-origin: 50% 100%;
-            transform: translateY(105%) rotate(5deg); opacity: 0;
-            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
-            transition-delay: calc(var(--i) * 55ms + 0.15s);
+            display: inline-block; font-size: calc(1em * var(--s, 1));
+            transform: translateY(var(--y, 0em)) rotate(var(--r, 0deg));
+            transform-origin: 50% 85%; opacity: 0; cursor: default;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .reveal-active .hl { transform: none; opacity: 1; }
-        .reveal-active .hl:hover { transform: translateY(-0.05em) rotate(-3deg); transition-delay: 0s; transition-duration: 0.25s; }
+        .reveal-active .hl {
+            opacity: 1;
+            animation: stampIn 0.75s cubic-bezier(0.2, 1.35, 0.4, 1) calc(var(--i) * 75ms + 0.2s) backwards;
+        }
+        .reveal-active .hl:hover { transform: translateY(calc(var(--y, 0em) - 0.05em)) rotate(calc(var(--r, 0deg) * -2)) scale(1.05); }
+        @keyframes stampIn {
+            0%   { opacity: 0; transform: translateY(calc(var(--y, 0em) - 0.4em)) rotate(calc(var(--r, 0deg) * 5)) scale(1.7); }
+            55%  { opacity: 1; }
+            100% { opacity: 1; transform: translateY(var(--y, 0em)) rotate(var(--r, 0deg)) scale(1); }
+        }
 
-        .hl-out {
-            color: transparent; -webkit-text-stroke: 0.022em #1c1917;
-            background: linear-gradient(#ccff00, #ccff00) no-repeat 0 100% / 0% 100%;
-            -webkit-background-clip: text; background-clip: text;
-            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, background-size 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-            transition-delay: calc(var(--i) * 55ms + 0.15s), calc(var(--i) * 55ms + 0.15s), calc(var(--i) * 110ms + 1.3s);
-        }
-        .reveal-active .hl-out {
-            background-size: 100% 100%;
-            animation: hlWave 3.2s ease-in-out calc(var(--i) * 140ms + 3.4s) infinite;
-        }
-        @keyframes hlWave { 0%, 55%, 100% { scale: 1 1; } 25% { scale: 1 1.07; } }
-
+        /* "SE" empilhado entre NÃO e CALE! (como na capa) */
         .hero-se {
-            display: inline-block; vertical-align: 1.2em; margin-left: 0.14em;
-            padding: 0.12em 0.42em 0.14em; font-size: 0.3em; line-height: 1; letter-spacing: -0.02em;
-            border-radius: 9999px; background: #ccff00; color: #1c1917; border: 0.07em solid #1c1917;
-            transform: rotate(-7deg) scale(0);
-            transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 1.1s;
+            display: flex; flex-direction: column; align-items: center; align-self: flex-end;
+            font-size: 0.5em; line-height: 0.86; gap: 0.12em; margin: 0 0.06em 0.02em;
+            transform: translateY(-0.1em);
         }
-        .reveal-active .hero-se { transform: rotate(-7deg) scale(1); animation: heroSeWobble 5s ease-in-out 2.2s infinite; }
-        @keyframes heroSeWobble { 0%, 100% { rotate: 0deg; } 50% { rotate: 6deg; } }
+        .hero-se .hl { display: block; font-size: calc(1em * var(--s, 1)); }
 
-        .hero-byline-rule { display: inline-block; height: 2px; width: 0; background: #ccff00; box-shadow: 0 0 0 1px #1c1917; transition: width 1s cubic-bezier(0.16, 1, 0.3, 1) 1.1s; }
-        .reveal-active .hero-byline-rule { width: 2.5rem; }
-        .hero-byline { opacity: 0; transform: translateY(8px); transition: opacity 0.8s ease 1s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1s; }
-        .reveal-active .hero-byline { opacity: 1; transform: none; }
+        /* "ELES PRECISAM OUVIR" + créditos pequenos, como na capa */
+        .hero-sub {
+            font-family: 'Anton', 'Bebas Neue', Impact, 'Arial Narrow', sans-serif; font-weight: 400;
+            text-transform: uppercase; line-height: 0.9; letter-spacing: 0;
+            font-size: min(12cqw, 11svh); margin-top: 0.2em;
+            filter: none;
+        }
+        .hero-sub-row { display: flex; align-items: flex-end; gap: 0.2em; white-space: nowrap; }
+        .hero-sub-row + .hero-sub-row { margin-top: 0.08em; }
+        .hs {
+            display: inline-block; transform: translateY(0.55em); transform-origin: 0 100%; opacity: 0;
+        }
+        .reveal-active .hs { opacity: 1; transform: none; transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i) * 110ms + 1s), opacity 0.5s ease calc(var(--i) * 110ms + 1s); }
+        .hs i { font-style: normal; }
+        .hero-credit {
+            font-size: 0.34em; letter-spacing: 0.07em; color: var(--book-ink); line-height: 1; white-space: nowrap;
+            opacity: 0; transform: translateY(6px);
+            transition: opacity 0.8s ease 1.5s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.5s;
+        }
+        .reveal-active .hero-credit { opacity: 0.9; transform: none; }
+        .hero-credit--top { align-self: flex-start; margin-top: 0.15em; }
+        .hero-credit--mid { align-self: center; padding-bottom: 0.2em; }
+
+        #hero-ghost { font-family: 'Anton', Impact, sans-serif; font-weight: 400 !important; font-size: 21vw !important; letter-spacing: 0 !important; }
+
+        /* sem filtro de tinta no mobile: mantém o vídeo fluido */
+        @media (max-width: 767px) {
+            .hero-title, .hero-sub { filter: none; }
+            .g { -webkit-text-stroke: 0; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45); }
+            .w { color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45); }
+            .hero-credit { color: #e7e5e4; }
+        }
 
         .eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 10px; }
         .eq i { width: 2px; height: 25%; background: #1c1917; border-radius: 1px; animation: eqBar 1s ease-in-out infinite; }
@@ -645,11 +687,9 @@
         @keyframes eqBar { 0%, 100% { height: 25%; } 50% { height: 100%; } }
 
         @media (prefers-reduced-motion: reduce) {
-            .hl { transform: none !important; opacity: 1 !important; transition: none !important; }
-            .hl-out { background-size: 100% 100% !important; animation: none !important; }
-            .hero-se { transform: rotate(-7deg) !important; animation: none !important; transition: none !important; }
-            .hero-byline { opacity: 1 !important; transform: none !important; transition: none !important; }
-            .hero-byline-rule { width: 2.5rem !important; transition: none !important; }
+            .hl { opacity: 1 !important; animation: none !important; transition: none !important; }
+            .hs { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .hero-credit { opacity: 0.9 !important; transform: none !important; transition: none !important; }
             .hero-rings, .eq i { animation: none !important; }
             .hero-rings { display: none; }
         }
@@ -693,29 +733,6 @@
 
         @media (max-width: 767px) {
 
-            /* ---- 02 / Meta de Impressão: título sempre em UMA linha ---- */
-            #meta-impressao .meta-card { container-type: inline-size; }
-            #meta-impressao .meta-head { gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: nowrap; }
-            #meta-impressao .meta-head-main { gap: 0.625rem; min-width: 0; flex: 1 1 0%; }
-            #meta-impressao .meta-icon { width: 2.25rem; height: 2.25rem; border-radius: 0.75rem; flex-shrink: 0; }
-            #meta-impressao .meta-icon iconify-icon { font-size: 1.05rem; }
-            #meta-impressao .meta-title {
-                white-space: nowrap; min-width: 0; overflow: hidden; text-overflow: ellipsis; /* nunca invade o selo */
-                font-size: clamp(0.8125rem, 4vw, 1rem);
-                line-height: 1.3; /* folga p/ descendentes (p, ç) não cortarem com overflow */
-                letter-spacing: -0.015em;
-            }
-            #meta-impressao .meta-pill {
-                flex-shrink: 0; gap: 0.3rem; padding: 0.3rem 0.5rem;
-                font-size: clamp(8px, 2.4vw, 10px); letter-spacing: 0; white-space: nowrap;
-            }
-            #meta-impressao .meta-pill > span:first-child { width: 0.3125rem; height: 0.3125rem; }
-            #meta-impressao .flashlight-card { padding: 1.25rem; }
-            /* card estreito: o ícone decorativo some para título + selo caberem lado a lado, sem sobreposição */
-            @container (max-width: 285px) {
-                #meta-impressao .meta-icon { display: none; }
-            }
-
             /* ---- 04 / O Autor ---- */
             /* eyebrow sobe para ACIMA da foto */
             .author-eyebrow-m { display: flex; margin-bottom: 1.75rem; }
@@ -723,7 +740,7 @@
                da coluna e o card de texto subia sobre a imagem. No mobile a altura vem do conteúdo. */
             #autor .author-frame { height: auto; }
             #autor #author-card { height: auto; }
-            /* nome grande (h2) + chips Pastor/Teólogo/Escritor saem do mobile.
+            /* nome grande (h2) + chips Pastor/Professor/Escritor saem do mobile.
                O h2 fica só para leitores de tela / SEO (fora do fluxo, não ocupa espaço) */
             #autor .author-head {
                 position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
@@ -735,7 +752,7 @@
             /* com o cabeçalho e as obras fora, o respiro entre foto e bio fica mais justo */
             #autor .grid { gap: 2rem; }
 
-            /* ---- 05 / FAQ ---- */
+            /* ---- 04 / FAQ ---- */
             /* "FREQUENTES" (≈6,3em de largura) calculado para caber na largura útil da tela (100vw − 48px de padding) */
             #faq .faq-title { font-size: min(3.75rem, calc((100vw - 3rem) / 6.9)); letter-spacing: -0.045em; line-height: 0.92; }
             #faq .faq-title .text-reveal-wrapper { max-width: 100%; }
@@ -762,7 +779,7 @@
                 <div
                     class="w-8 h-8 rounded-full bg-stone-900 flex items-center justify-center text-white transition-transform duration-500 group-hover:rotate-45">
                     <iconify-icon icon="solar:book-bookmark-minimalistic-bold"
-                        class="text-base text-[#ccff00]"></iconify-icon>
+                        class="text-base text-[#84c800]"></iconify-icon>
                 </div>
                 <div class="flex flex-col">
                     <span class="text-xs font-mono font-bold tracking-tight uppercase text-stone-900">RAFAEL
@@ -776,8 +793,6 @@
                 <a href="#hero-pin-container"
                     class="text-xs font-mono uppercase tracking-tight text-stone-900 hover:text-stone-600 transition-colors">O
                     Livro</a>
-                <a href="#meta-impressao"
-                    class="text-xs font-mono uppercase tracking-tight text-stone-600 hover:text-stone-900 transition-colors">Meta</a>
                 <a href="#proposito"
                     class="text-xs font-mono uppercase tracking-tight text-stone-600 hover:text-stone-900 transition-colors">A
                     Mensagem</a>
@@ -792,12 +807,12 @@
             <!-- Right: Badge & Quick CTA -->
             <div class="flex items-center gap-4">
                 <span
-                    class="hdr-badge hidden sm:inline-flex items-center gap-1.5 px-3 py-1 bg-stone-900 text-[#ccff00] rounded-full text-[11px] font-mono font-semibold uppercase tracking-tight">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span>
+                    class="hdr-badge hidden sm:inline-flex items-center gap-1.5 px-3 py-1 bg-stone-900 text-[#84c800] rounded-full text-[11px] font-mono font-semibold uppercase tracking-tight">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#84c800] animate-pulse"></span>
                     2ª Edição
                 </span>
 
-                <a href="https://loja.infinitepay.io/alinearaujo-dv/lfh9352-devocional-jesus-e-suficiente"
+                <a href="https://loja.infinitepay.io/rafaelelian"
                     class="px-5 py-2.5 bg-stone-900 text-white hover:bg-stone-800 text-xs font-mono font-bold tracking-tight uppercase rounded-full transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-900">
                     Garantir Livro
                 </a>
@@ -808,6 +823,14 @@
     <!-- ========================================================
          HERO SECTION (PINNED 100vw x 100vh WITH VIDEO SCRUB)
     ======================================================== -->
+    <!-- Filtro de "tinta": borda irregular + falhas de impressão, como a tipografia da capa -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <filter id="ink-rough" x="-4%" y="-10%" width="108%" height="120%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04 0.06" numOctaves="2" seed="7" result="warp" />
+            <feDisplacementMap in="SourceGraphic" in2="warp" scale="3.2" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+    </svg>
+
     <div id="hero-scroll-track" class="relative w-full">
 
         <!-- PINNED CONTAINER -->
@@ -845,39 +868,46 @@
                     <div id="hero-eyebrow" class="flex flex-wrap items-center gap-2 mb-3.5 opacity-0">
                         <span
                             class="px-2.5 py-0.5 border border-stone-900/20 rounded-full text-[11px] font-mono uppercase bg-white/80 backdrop-blur-md text-stone-900 font-bold tracking-tight shadow-sm">
-                            PRÉ-VENDA
+                            LANÇAMENTO
                         </span>
                         <span
-                            class="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-[#ccff00] text-stone-900 rounded-full text-[11px] font-mono font-bold tracking-tight uppercase border border-black/10">
+                            class="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-[#84c800] text-stone-900 rounded-full text-[11px] font-mono font-bold tracking-tight uppercase border border-black/10">
                             <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-                            MISSÃO EM ANDAMENTO
+                            DISPONÍVEL AGORA
                         </span>
                     </div>
 
                     <!-- Compact Headline with Outline & Contrast Styling (Referência: A caneta mais tecnológica do mundo) -->
                     <div id="hero-headline-group" class="mb-4">
                         <h1 class="hero-title" aria-label="Não se cale!">
-                            <span class="block text-reveal-wrapper hero-line" aria-hidden="true"><span class="text-reveal-content"><span class="hl" style="--i:0">N</span><span class="hl" style="--i:1">Ã</span><span class="hl" style="--i:2">O</span><span class="hero-se">SE</span></span></span>
-                            <span class="block text-reveal-wrapper hero-line" aria-hidden="true"><span class="text-reveal-content"><span class="hl hl-out" style="--i:3">C</span><span class="hl hl-out" style="--i:4">A</span><span class="hl hl-out" style="--i:5">L</span><span class="hl hl-out" style="--i:6">E</span><span class="hl hl-out" style="--i:7">!</span></span></span>
+                            <span class="hero-word" aria-hidden="true">
+                                <span class="hl g" style="--i:0;--s:.97;--y:.10em;--r:-1.5deg">N</span><span class="hl g" style="--i:1;--s:1;--y:-.03em;--r:-2.5deg">Ã</span><span class="hl g" style="--i:2;--s:1.02;--y:-.08em;--r:1deg">O</span>
+                            </span>
+                            <span class="hero-se" aria-hidden="true">
+                                <span class="hl w" style="--i:3;--s:1;--r:-5deg">S</span><span class="hl w" style="--i:4;--s:1;--r:3deg">E</span>
+                            </span>
+                            <span class="hero-word" aria-hidden="true">
+                                <span class="hl g" style="--i:5;--s:1.01;--y:0em;--r:-1deg">C</span><span class="hl g" style="--i:6;--s:1.02;--y:-.1em;--r:2.5deg">A</span><span class="hl g" style="--i:7;--s:.97;--y:.03em;--r:-1deg">L</span><span class="hl g" style="--i:8;--s:.99;--y:.12em;--r:1.5deg">E</span><span class="hl g" style="--i:9;--s:.93;--y:.14em;--r:3deg">!</span>
+                            </span>
                         </h1>
-                        <div class="hero-byline mt-3 flex items-center gap-3 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-widest text-stone-500">
-                            <span class="hero-byline-rule"></span>
-                            <span>Por Rafael Elian</span>
-                            <span class="text-stone-400">/</span>
-                            <span>2ª edição</span>
-                        </div>
+                        <p class="hero-sub" aria-label="Eles precisam ouvir também — Rafael Elian, 2ª edição">
+                            <span class="hero-sub-row" aria-hidden="true">
+                                <span class="hs w" style="--i:0">ELES</span>
+                                <span class="hs g" style="--i:1">PRECISAM</span>
+                                <span class="hero-credit hero-credit--top">RAFAEL ELIAN</span>
+                            </span>
+                            <span class="hero-sub-row" aria-hidden="true">
+                                <span class="hero-credit hero-credit--mid">2ª EDIÇÃO</span>
+                                <span class="hs g" style="--i:2">OUVIR</span>
+                                <span class="hs w" style="--i:3">TAMBÉM</span>
+                            </span>
+                        </p>
                     </div>
 
                     <!-- Compact Editorial Description & Pré-Venda Disclaimer -->
                     <div id="hero-description" class="mb-5 max-w-[440px] opacity-0">
                         <p class="text-[13px] sm:text-base text-stone-800 font-normal leading-snug">
-                            Garanta seu exemplar de "Não se cale!" e ajude a completar a cota de impressão. Ao comprar,
-                            você se torna investidor de uma missão que vai muito além de um livro.
-                        </p>
-                        <p
-                            class="mt-2.5 text-[11px] sm:text-xs text-stone-500 font-normal leading-relaxed border-l-2 border-stone-300 pl-2.5 [@media(max-height:760px)]:hidden lg:[@media(max-height:760px)]:block">
-                            Trata-se de uma pré-venda. Não há previsão de entrega. O livro só será impresso após
-                            atingirmos 100% da meta, e o envio/retirada ocorrerá após o lançamento.
+                            Na página de compra, escolha a opção ideal para você: R$39,90, para retirar pessoalmente, ou R$52,80, se você prefere receber em casa.
                         </p>
                     </div>
 
@@ -889,10 +919,10 @@
                             class="group relative inline-flex items-center justify-center overflow-hidden rounded-full p-[1.5px] cursor-pointer shadow-md hover:shadow-lg transition-all duration-300">
                             <!-- Spinning Conic Beam Border -->
                             <span
-                                class="absolute inset-[-1000%] animate-spin-beam bg-[conic-gradient(from_0deg,transparent_0_330deg,#ccff00_360deg)]"></span>
+                                class="absolute inset-[-1000%] animate-spin-beam bg-[conic-gradient(from_0deg,transparent_0_330deg,#84c800_360deg)]"></span>
 
                             <!-- Inner Button Container -->
-                            <a href="https://loja.infinitepay.io/alinearaujo-dv/lfh9352-devocional-jesus-e-suficiente"
+                            <a href="https://loja.infinitepay.io/rafaelelian"
                                 class="relative flex h-full w-full items-center rounded-full bg-stone-900 px-6 py-3.5 transition-all duration-300 group-hover:bg-stone-800 text-white">
                                 <span class="absolute inset-0 overflow-hidden rounded-full">
                                     <span
@@ -900,16 +930,16 @@
                                 </span>
                                 <span class="relative flex items-center gap-2">
                                     <span
-                                        class="text-xs font-mono font-bold uppercase tracking-normal text-[#ccff00]">COMPRAR
+                                        class="text-xs font-mono font-bold uppercase tracking-normal text-[#84c800]">COMPRAR
                                         AGORA</span>
                                     <iconify-icon icon="solar:arrow-right-linear"
-                                        class="text-sm text-[#ccff00] transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
+                                        class="text-sm text-[#84c800] transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
                                 </span>
                             </a>
                         </div>
 
                         <!-- Secondary Frosted Pill Button (From Reference Layout) -->
-                        <a href="#meta-impressao"
+                        <a href="#proposito"
                             class="glass-pill px-6 py-3.5 rounded-full text-xs font-mono font-bold uppercase tracking-normal text-stone-900 hover:bg-white hover:border-stone-900 transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-md group">
                             <span>Explorar</span>
                             <iconify-icon icon="solar:arrow-down-linear"
@@ -925,7 +955,7 @@
                     <div class="flex items-center gap-2.5">
                         <span id="scene-counter" class="text-xs font-mono font-bold tracking-tight text-stone-900">01 /
                             03</span>
-                        <div class="w-1.5 h-1.5 rounded-full bg-[#ccff00] border border-stone-900/30"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-[#84c800] border border-stone-900/30"></div>
                     </div>
 
                     <!-- Vertical Track with Animated Progress Line -->
@@ -959,119 +989,6 @@
     </div>
 
     <!-- ========================================================
-         SEGUNDA DOBRA: BARRA DE META EM DESTAQUE (PERSUASÃO MÁXIMA)
-         Inspirada no Design System 6 e na referência visual
-    ======================================================== -->
-    <section id="meta-impressao"
-        class="relative z-20 border-t border-stone-300/80 bg-[#EAEAE5] py-12 md:py-16 overflow-hidden">
-
-        <!-- Architectural Grid Background (Design System 6) -->
-        <div class="absolute inset-0 bg-grid pointer-events-none opacity-30 z-0"></div>
-
-        <div class="relative z-10 max-w-[1520px] mx-auto px-6 md:px-12 lg:px-16">
-            <!-- Two-column layout: text left, progress card right -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-
-                <!-- LEFT: Eyebrow + Headline + Description -->
-                <div class="lg:col-span-5 flex flex-col gap-4">
-                    <!-- Eyebrow matching 03 / O PROPOSITO -->
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500">02 / META DE
-                            IMPRESS&#xC3;O</span>
-                        <span class="w-12 h-[1px] bg-stone-300"></span>
-                    </div>
-                    <h2 data-split-fade
-                        class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight uppercase text-stone-900 leading-[0.98]">
-                        Cada exemplar antecipa<br>a impress&#xE3;o de<br>uma mensagem.
-                    </h2>
-                    <p class="text-stone-600 text-sm sm:text-base leading-relaxed max-w-sm">
-                        Para que a impress&#xE3;o seja iniciada, precisamos atingir 100% da cota coletiva. Ao
-                        apoiar, voc&#xEA; viabiliza a entrega f&#xED;sica para todos.
-                    </p>
-                </div>
-
-                <!-- RIGHT: Progress Card -->
-                <div class="lg:col-span-7">
-                    <div class="meta-card relative bg-white/95 backdrop-blur-xl border border-stone-300/80 rounded-3xl shadow-xl p-6 sm:p-8 flashlight-card overflow-hidden group hover:shadow-2xl transition-all duration-500"
-                        onmousemove="const rect = this.getBoundingClientRect(); this.style.setProperty('--mouse-x', `${event.clientX - rect.left}px`); this.style.setProperty('--mouse-y', `${event.clientY - rect.top}px`);">
-
-                        <!-- Top Row: Icon + Meta Title + Live Status -->
-                        <div class="meta-head flex items-center justify-between gap-4 mb-6">
-                            <div class="meta-head-main flex items-center gap-3.5">
-                                <div
-                                    class="meta-icon w-11 h-11 rounded-2xl bg-[#ccff00]/25 text-stone-900 flex items-center justify-center text-xl border border-[#ccff00]/50 shadow-sm shrink-0">
-                                    <iconify-icon icon="solar:printer-minimalistic-bold"
-                                        class="text-xl text-stone-900"></iconify-icon>
-                                </div>
-                                <h3 class="meta-title text-base sm:text-lg font-bold text-stone-900 tracking-tight leading-snug">
-                                    Meta de Impress&#xE3;o 
-                                </h3>
-                            </div>
-                            <!-- Status Pill -->
-                            <span
-                                class="meta-pill inline-flex items-center gap-1.5 px-3 py-1 bg-stone-900 text-[#ccff00] rounded-full text-xs font-mono font-bold uppercase tracking-tight shadow-sm shrink-0">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-ping"></span>
-                                Em Andamento
-                            </span>
-                        </div>
-
-                        <!-- Progress Track -->
-                        <div class="relative my-5">
-                            <div
-                                class="w-full h-4 sm:h-5 bg-stone-100 border border-stone-200 rounded-full overflow-hidden relative shadow-inner p-[1.5px]">
-                                <div id="meta-progress-fill"
-                                    class="h-full bg-stone-900 rounded-full relative overflow-hidden transition-all duration-1000 ease-out"
-                                    style="width: 10%;">
-                                    <div
-                                        class="absolute inset-0 w-full h-full -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-[shimmer_2s_infinite]">
-                                    </div>
-                                    <div class="absolute right-0 top-0 bottom-0 w-2 bg-[#ccff00]"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Row: Metric + CTA -->
-                        <div class="flex flex-wrap items-center justify-between gap-4 pt-1">
-                            <div class="flex items-baseline gap-2">
-                                <span class="text-xl sm:text-2xl font-black text-stone-900 tracking-tight">10%</span>
-                                <span class="text-xs sm:text-sm font-bold text-stone-800">da meta de impress&#xE3;o
-                                    atingida</span>
-                            </div>
-                            <a href="https://loja.infinitepay.io/alinearaujo-dv/lfh9352-devocional-jesus-e-suficiente"
-                                class="px-5 py-2.5 bg-stone-900 text-[#ccff00] hover:bg-stone-800 rounded-full text-xs font-mono font-bold uppercase tracking-tight transition-all duration-300 shadow-md hover:shadow-xl flex items-center gap-2 group">
-                                <span>Garantir o meu</span>
-                                <iconify-icon icon="solar:arrow-right-linear"
-                                    class="text-sm text-[#ccff00] transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- FLOATING PERSISTENT PROGRESS PILL (Discreta e sempre acessível conforme scroll) -->
-    <aside id="floating-meta-bar"
-        class="fixed bottom-6 right-6 sm:right-10 z-50 bg-stone-900 text-white pl-4 pr-3 py-2.5 rounded-full shadow-2xl border border-stone-700/60 backdrop-blur-md flex items-center gap-3.5 transition-all duration-500 translate-y-28 opacity-0 pointer-events-none"
-        aria-label="Progresso da Meta">
-        <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-[#ccff00] animate-pulse"></span>
-            <span class="text-xs font-mono font-bold text-white tracking-tight">META: <span
-                    class="text-[#ccff00]">10%</span></span>
-        </div>
-        <div class="w-16 h-1.5 bg-stone-700 rounded-full overflow-hidden relative">
-            <div class="h-full bg-[#ccff00] w-[10%]"></div>
-        </div>
-        <a href="https://loja.infinitepay.io/alinearaujo-dv/lfh9352-devocional-jesus-e-suficiente"
-            class="px-3.5 py-1.5 bg-[#ccff00] text-stone-900 hover:bg-white rounded-full text-[11px] font-mono font-bold uppercase tracking-tight transition-colors shadow-sm flex items-center gap-1">
-            <span>Garantir</span>
-            <iconify-icon icon="solar:arrow-right-linear" class="text-xs"></iconify-icon>
-        </a>
-    </aside>
-
-    <!-- ========================================================
          SECTION 3: EDITORIAL CONTINUATION (WHEN HERO UNPINS)
          Deep dive into the book identity, questions & 3D mockup
     ======================================================== -->
@@ -1085,7 +1002,7 @@
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end pb-8 border-b border-stone-300/80">
                 <div class="md:col-span-8">
                     <div class="flex items-center gap-3 mb-3">
-                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500">03 / O
+                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500">02 / O
                             PROP&#xD3;SITO</span>
                         <span class="w-12 h-[1px] bg-stone-300"></span>
                     </div>
@@ -1108,37 +1025,16 @@
                 <!-- Left: Amplified Book Showcase -->
                 <div class="lg:col-span-7 perspective-1000 reveal flex flex-col">
                     <div id="book-3d-card"
-                        class="relative w-full flex-1 min-h-[420px] sm:min-h-[480px] lg:min-h-0 bg-white/75 backdrop-blur-xl border border-white/70 rounded-2xl shadow-xl px-3 sm:px-4 pt-14 pb-4 flex flex-col justify-center flashlight-card group overflow-hidden"
+                        class="relative w-full flex-1 min-h-[460px] sm:min-h-[520px] lg:min-h-0 bg-black border border-stone-900/20 rounded-2xl shadow-xl flex flex-col justify-center flashlight-card group overflow-hidden isolate"
                         onmousemove="const rect = this.getBoundingClientRect(); this.style.setProperty('--mouse-x', `${event.clientX - rect.left}px`); this.style.setProperty('--mouse-y', `${event.clientY - rect.top}px`);">
 
-                        <div class="pointer-events-none absolute inset-0 bg-grid opacity-40"></div>
-                        <div
-                            class="pointer-events-none absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-[78%] h-[62%] rounded-full bg-[#ccff00]/25 blur-3xl mix-blend-multiply animate-pulse-subtle">
-                        </div>
-
-                        <div class="absolute top-5 left-5 z-20">
-                            <span
-                                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-900 text-[#ccff00] text-[10px] font-mono font-bold uppercase tracking-widest shadow-lg">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#ccff00] animate-pulse"></span>
-                                Pré-venda
-                            </span>
-                        </div>
-
-                        <div class="absolute top-5 right-5 z-20">
-                            <span
-                                class="inline-flex items-center px-3 py-1.5 rounded-full bg-[#ccff00] text-stone-900 text-[10px] font-mono font-black uppercase tracking-tight shadow-lg animate-price-pulse">
-                                Economize R$10
-                            </span>
-                        </div>
-
-                        <div class="relative w-full flex-1 min-h-[300px]">
-                            <div class="book-float-stage mix-blend-multiply absolute inset-0">
-                                <img src="raw_files/mockup_nao_se_cale.png"
-                                    alt="Mockup oficial do livro Não Se Cale, de Rafael Elian"
-                                    class="book-img w-full h-full object-contain transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-                                    loading="lazy" />
-                            </div>
-                        </div>
+                        <!-- Mockup cobrindo 100% do card (object-cover), com leve degradê no topo para os selos -->
+                        <img src="raw_files/mockup_nao_se_cale.webp"
+                            alt="Mockup oficial do livro Não Se Cale, de Rafael Elian"
+                            width="1920" height="1160"
+                            class="book-cover-img absolute inset-0 z-0 w-full h-full object-cover object-[50%_46%] transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+                            loading="lazy" decoding="async" />
+                        <div class="pointer-events-none absolute inset-x-0 top-0 z-10 h-28 bg-gradient-to-b from-black/60 to-transparent"></div>
                     </div>
                 </div>
 
@@ -1183,7 +1079,7 @@
                         <div class="relative z-10 flex items-center justify-between gap-3 mb-3">
                             <span
                                 class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#ccff00] text-stone-900 text-[10px] font-mono font-black uppercase tracking-widest">
-                                Oferta de pré-venda
+                                Oferta de lançamento
                             </span>
                             <span class="text-[10px] font-mono uppercase tracking-widest text-stone-400">
                                 Depois: R$49,00
@@ -1193,7 +1089,7 @@
                         <div class="relative z-10 price-shine rounded-xl mb-2">
                             <div class="flex items-end gap-3">
                                 <p class="text-5xl font-black tracking-tighter leading-none text-white">
-                                    R$39<span class="text-3xl align-top text-[#ccff00]">,00</span>
+                                    R$39<span class="text-3xl align-top text-[#ccff00]">,90</span>
                                 </p>
                                 <p class="pb-1.5 text-lg font-mono text-stone-500 line-through decoration-[#ccff00]/70">
                                     R$49,00
@@ -1205,11 +1101,11 @@
                             class="relative z-10 group/cta inline-flex w-full items-center justify-center overflow-hidden rounded-full p-[1.5px] cursor-pointer">
                             <span
                                 class="absolute inset-[-1000%] animate-spin-beam bg-[conic-gradient(from_0deg,transparent_0_330deg,#ccff00_360deg)]"></span>
-                            <a href="https://loja.infinitepay.io/alinearaujo-dv/lfh9352-devocional-jesus-e-suficiente"
+                            <a href="https://loja.infinitepay.io/rafaelelian"
                                 class="relative flex w-full items-center justify-center rounded-full bg-stone-900 px-6 py-3.5 transition-colors duration-300 hover:bg-black">
                                 <span
                                     class="text-xs font-mono font-bold uppercase tracking-widest text-[#ccff00] flex items-center gap-2">
-                                    Garantir na pré-venda
+                                    Garantir o meu exemplar
                                     <iconify-icon icon="solar:arrow-right-linear"
                                         class="text-base transition-transform duration-300 group-hover/cta:translate-x-1.5"></iconify-icon>
                                 </span>
@@ -1217,8 +1113,8 @@
                         </div>
 
                         <p class="relative z-10 mt-4 text-[11px] leading-relaxed text-stone-500 border-t border-white/10 pt-3">
-                            Trata-se de uma pré-venda. Não há previsão de entrega. O livro só será impresso após
-                            atingirmos 100% da meta, e o envio/retirada ocorrerá após o lançamento.
+                            Na página de compra, escolha a opção ideal para você: R$39,90, para retirar pessoalmente,
+                            ou R$52,80, se você prefere receber em casa.
                         </p>
                     </div>
 
@@ -1295,7 +1191,7 @@
                 <div class="lg:col-span-5 relative author-stage reveal">
                     <!-- MOBILE: eyebrow acima da foto -->
                     <div class="author-eyebrow-m items-center gap-3">
-                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500">04 / O AUTOR</span>
+                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500">03 / O AUTOR</span>
                         <span class="w-12 h-[1px] bg-stone-300"></span>
                     </div>
                     <div class="author-frame relative h-full">
@@ -1330,7 +1226,7 @@
                             <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 z-20">
                                 <div class="author-line h-[2px] bg-[#ccff00] mb-4"></div>
                                 <p class="text-3xl sm:text-4xl font-bold tracking-tighter text-white leading-none">Rafael Elian</p>
-                                <p class="mt-2 text-[11px] font-mono uppercase tracking-widest text-[#ccff00]">Pastor &bull; Teólogo &bull; Escritor</p>
+                                <p class="mt-2 text-[11px] font-mono uppercase tracking-widest text-[#ccff00]">Pastor &bull; Professor &bull; Escritor</p>
                             </div>
                         </div>
 
@@ -1341,7 +1237,7 @@
                                     <path id="author-circle" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" />
                                 </defs>
                                 <text font-family="JetBrains Mono, monospace" font-size="9" font-weight="700" fill="#1c1917">
-                                    <textPath href="#author-circle" textLength="270" lengthAdjust="spacing">AUTOR &#x2022; PASTOR &#x2022; TEÓLOGO &#x2022; ESCRITOR &#x2022;</textPath>
+                                    <textPath href="#author-circle" textLength="270" lengthAdjust="spacing">AUTOR &#x2022; PASTOR &#x2022; PROFESSOR &#x2022; ESCRITOR &#x2022;</textPath>
                                 </text>
                             </svg>
                             <iconify-icon icon="solar:arrow-right-up-linear" class="text-3xl text-stone-900"></iconify-icon>
@@ -1354,7 +1250,7 @@
 
                     <div class="author-head">
                         <div class="author-eyebrow-d reveal flex items-center gap-3 mb-4">
-                            <span class="text-xs font-mono uppercase tracking-widest text-stone-500">04 / O AUTOR</span>
+                            <span class="text-xs font-mono uppercase tracking-widest text-stone-500">03 / O AUTOR</span>
                             <span class="w-12 h-[1px] bg-stone-300"></span>
                         </div>
 
@@ -1365,13 +1261,13 @@
 
                         <div class="author-chips mt-6 flex flex-wrap gap-2">
                             <span class="reveal delay-200 author-chip">Pastor</span>
-                            <span class="reveal delay-300 author-chip">Teólogo</span>
+                            <span class="reveal delay-300 author-chip">Professor</span>
                             <span class="reveal delay-500 author-chip">Escritor</span>
                         </div>
                     </div>
 
                     <div class="reveal delay-200 glass-pill rounded-2xl border border-stone-300/80 shadow-sm p-6 sm:p-8 flashlight-card author-bio">
-                        <p data-scrub class="text-lg sm:text-xl font-medium tracking-tight text-stone-900 leading-snug">Rafael é casado com Viviane Vale Elian, pai do Benjamim e pai do coração de Theo e Valentina. Pastor, teólogo e escritor, carrega uma profunda paixão por ver vidas transformadas pelo Evangelho.</p>
+                        <p data-scrub class="text-lg sm:text-xl font-medium tracking-tight text-stone-900 leading-snug">Rafael é casado com Viviane Vale Elian, pai do Benjamim e pai do coração de Theo e Valentina. Pastor, professor e escritor, carrega uma profunda paixão por ver vidas transformadas pelo Evangelho.</p>
                         <p data-scrub class="mt-5 text-sm sm:text-[15px] text-stone-600 leading-relaxed">Dedicado ao ensino e à pregação da Palavra. Rafael também se expressa por meio da escrita, sendo autor de obras como Antes do Compromisso e Suficiente. Sua jornada é marcada pelo compromisso de anunciar a mensagem da Graça por onde Deus o conduz, inspirando pessoas a viverem uma fé autêntica e transformadora.</p>
                     </div>
 
@@ -1385,7 +1281,7 @@
                                 <span class="absolute inset-y-0 left-0 w-1 bg-[#ccff00] scale-y-0 origin-top transition-transform duration-500 group-hover/work:scale-y-100"></span>
                                 <div>
                                     <span class="text-[10px] font-mono text-stone-400 tracking-widest">01</span>
-                                    <p class="text-base font-bold tracking-tight text-stone-900">Antes do Compromisso</p>
+                                    <p class="text-base font-bold tracking-tight text-stone-900">Antes do Compromisso (Jan/2027)</p>
                                 </div>
                                 <iconify-icon icon="solar:arrow-right-up-linear" class="text-xl text-stone-400 transition-all duration-500 group-hover/work:text-stone-900 group-hover/work:translate-x-1 group-hover/work:-translate-y-1"></iconify-icon>
                             </div>
@@ -1393,7 +1289,7 @@
                                 <span class="absolute inset-y-0 left-0 w-1 bg-[#ccff00] scale-y-0 origin-top transition-transform duration-500 group-hover/work:scale-y-100"></span>
                                 <div>
                                     <span class="text-[10px] font-mono text-stone-400 tracking-widest">02</span>
-                                    <p class="text-base font-bold tracking-tight text-stone-900">Suficiente</p>
+                                    <p class="text-base font-bold tracking-tight text-stone-900">Suficiente (Mar/2027)</p>
                                 </div>
                                 <iconify-icon icon="solar:arrow-right-up-linear" class="text-xl text-stone-400 transition-all duration-500 group-hover/work:text-stone-900 group-hover/work:translate-x-1 group-hover/work:-translate-y-1"></iconify-icon>
                             </div>
@@ -1417,9 +1313,9 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
                 <!-- LEFT: sticky heading -->
-                <div class="lg:col-span-5 lg:sticky lg:top-28 faq-head">
+                <div class="lg:col-span-5 lg:sticky lg:top-28 lg:self-start faq-head">
                     <div class="reveal flex items-center gap-3 mb-4">
-                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500">05 / FAQ</span>
+                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500">04 / FAQ</span>
                         <span class="w-12 h-[1px] bg-stone-300"></span>
                     </div>
 
@@ -1427,10 +1323,6 @@
                         <span class="block text-reveal-wrapper"><span class="text-reveal-content">Dúvidas</span></span>
                         <span class="block text-reveal-wrapper"><span class="text-reveal-content delay-100 transparent-text-outline">Frequentes</span></span>
                     </h2>
-
-                    <p class="faq-intro reveal delay-200 mt-6 max-w-md text-sm sm:text-base text-stone-600 leading-relaxed">
-                        Tudo o que você precisa saber sobre a pré-venda, a entrega e o pagamento &mdash; antes de garantir o seu exemplar.
-                    </p>
 
                     <div class="faq-contact reveal delay-300 mt-8 relative overflow-hidden rounded-2xl bg-stone-900 text-white p-6 shadow-2xl flashlight-card max-w-md">
                         <div class="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[#ccff00]/20 blur-3xl animate-pulse-subtle"></div>
@@ -1455,24 +1347,24 @@
                     </div>
                 </div>
 
-                <!-- RIGHT: accordion -->
-                <div class="lg:col-span-7">
+                <!-- RIGHT: accordion (no desktop acompanha a altura da coluna da esquerda) -->
+                <div class="lg:col-span-7 lg:self-stretch lg:flex lg:flex-col">
                     <div class="reveal flex items-center justify-between mb-4">
-                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500 font-bold">06 perguntas</span>
+                        <span class="text-xs font-mono uppercase tracking-widest text-stone-500 font-bold">04 perguntas</span>
                         <button type="button" id="faq-toggle-all" class="text-[11px] font-mono uppercase tracking-widest text-stone-500 hover:text-stone-900 transition-colors underline underline-offset-4 decoration-stone-300 hover:decoration-[#ccff00]">Abrir todas</button>
                     </div>
-                    <div id="faq-list" class="flex flex-col gap-3">
+                    <div id="faq-list" class="flex flex-col gap-3 lg:flex-1">
                         <div class="faq-item reveal flashlight-card" style="transition-delay:0.00s">
                             <h3>
                                 <button type="button" class="faq-trigger" id="faq-btn-0" aria-expanded="false" aria-controls="faq-panel-0">
                                     <span class="faq-num">01</span>
-                                    <span class="faq-q">Quando o livro será entregue?</span>
+                                    <span class="faq-q">Como recebo o livro?</span>
                                     <span class="faq-icon" aria-hidden="true"><i></i><i></i></span>
                                 </button>
                             </h3>
                             <div class="faq-panel" id="faq-panel-0" role="region" aria-labelledby="faq-btn-0">
                                 <div class="faq-panel-inner">
-                                    <p>O livro será impresso após a campanha atingir <mark class="faq-mark">100% da meta</mark>. Por isso, ainda não há uma data exata para a entrega. Assim que o lançamento acontecer, os livros serão enviados ou estarão disponíveis para retirada.</p>
+                                    <p>Você pode receber o livro em casa, com <mark class="faq-mark">envio</mark> acrescentado ao valor da compra, ou retirá-lo pessoalmente. Para combinar os detalhes, fale diretamente com o autor pelo Instagram <a href="https://instagram.com/rafaelelian" target="_blank" rel="noopener" class="faq-mark">@rafaelelian</a>.</p>
                                 </div>
                             </div>
                             <span class="faq-bar" aria-hidden="true"></span>
@@ -1481,13 +1373,13 @@
                             <h3>
                                 <button type="button" class="faq-trigger" id="faq-btn-1" aria-expanded="false" aria-controls="faq-panel-1">
                                     <span class="faq-num">02</span>
-                                    <span class="faq-q">E se a meta não for atingida?</span>
+                                    <span class="faq-q">O frete está incluso?</span>
                                     <span class="faq-icon" aria-hidden="true"><i></i><i></i></span>
                                 </button>
                             </h3>
                             <div class="faq-panel" id="faq-panel-1" role="region" aria-labelledby="faq-btn-1">
                                 <div class="faq-panel-inner">
-                                    <p>Não se preocupe: <mark class="faq-mark">você receberá o seu livro normalmente</mark>. Após o encerramento da campanha, a quantidade de exemplares vendidos será encaminhada para impressão, garantindo que todos os compradores recebam seu livro.</p>
+                                    <p>Não. O valor do frete é de <mark class="faq-mark">R$12,90</mark> e está acrescentado ao valor do livro + frete.</p>
                                 </div>
                             </div>
                             <span class="faq-bar" aria-hidden="true"></span>
@@ -1496,13 +1388,13 @@
                             <h3>
                                 <button type="button" class="faq-trigger" id="faq-btn-2" aria-expanded="false" aria-controls="faq-panel-2">
                                     <span class="faq-num">03</span>
-                                    <span class="faq-q">Como acompanho o andamento da campanha?</span>
+                                    <span class="faq-q">Posso retirar o livro pessoalmente?</span>
                                     <span class="faq-icon" aria-hidden="true"><i></i><i></i></span>
                                 </button>
                             </h3>
                             <div class="faq-panel" id="faq-panel-2" role="region" aria-labelledby="faq-btn-2">
                                 <div class="faq-panel-inner">
-                                    <p>Você pode acompanhar o progresso diretamente pela barra de progresso nesta página. Também compartilharemos atualizações pelo Instagram <a href="https://instagram.com/rafaelelian" target="_blank" rel="noopener" class="faq-mark">@rafaelelian</a>.</p>
+                                    <p>Sim! Você poderá retirar seu livro pessoalmente em Fortaleza ou na <mark class="faq-mark">CCVideira Sul</mark>. Para combinar a retirada e receber as orientações, entre em contato diretamente com o autor pelo WhatsApp ou pelo Instagram <a href="https://instagram.com/rafaelelian" target="_blank" rel="noopener" class="faq-mark">@rafaelelian</a>.</p>
                                 </div>
                             </div>
                             <span class="faq-bar" aria-hidden="true"></span>
@@ -1511,41 +1403,11 @@
                             <h3>
                                 <button type="button" class="faq-trigger" id="faq-btn-3" aria-expanded="false" aria-controls="faq-panel-3">
                                     <span class="faq-num">04</span>
-                                    <span class="faq-q">O frete está incluso?</span>
-                                    <span class="faq-icon" aria-hidden="true"><i></i><i></i></span>
-                                </button>
-                            </h3>
-                            <div class="faq-panel" id="faq-panel-3" role="region" aria-labelledby="faq-btn-3">
-                                <div class="faq-panel-inner">
-                                    <p>Não. O valor do frete é de <mark class="faq-mark">R$12,90</mark> e será acrescentado ao valor da compra no momento do pedido.</p>
-                                </div>
-                            </div>
-                            <span class="faq-bar" aria-hidden="true"></span>
-                        </div>
-                        <div class="faq-item reveal flashlight-card" style="transition-delay:0.32s">
-                            <h3>
-                                <button type="button" class="faq-trigger" id="faq-btn-4" aria-expanded="false" aria-controls="faq-panel-4">
-                                    <span class="faq-num">05</span>
-                                    <span class="faq-q">Posso retirar o livro pessoalmente?</span>
-                                    <span class="faq-icon" aria-hidden="true"><i></i><i></i></span>
-                                </button>
-                            </h3>
-                            <div class="faq-panel" id="faq-panel-4" role="region" aria-labelledby="faq-btn-4">
-                                <div class="faq-panel-inner">
-                                    <p>Sim! Você poderá retirar seu livro pessoalmente na <mark class="faq-mark">CCVideira Sul</mark>. Para combinar a retirada e receber as orientações, entre em contato diretamente com o autor pelo WhatsApp ou pelo Instagram <a href="https://instagram.com/rafaelelian" target="_blank" rel="noopener" class="faq-mark">@rafaelelian</a>.</p>
-                                </div>
-                            </div>
-                            <span class="faq-bar" aria-hidden="true"></span>
-                        </div>
-                        <div class="faq-item reveal flashlight-card" style="transition-delay:0.40s">
-                            <h3>
-                                <button type="button" class="faq-trigger" id="faq-btn-5" aria-expanded="false" aria-controls="faq-panel-5">
-                                    <span class="faq-num">06</span>
                                     <span class="faq-q">É seguro realizar o pagamento?</span>
                                     <span class="faq-icon" aria-hidden="true"><i></i><i></i></span>
                                 </button>
                             </h3>
-                            <div class="faq-panel" id="faq-panel-5" role="region" aria-labelledby="faq-btn-5">
+                            <div class="faq-panel" id="faq-panel-3" role="region" aria-labelledby="faq-btn-3">
                                 <div class="faq-panel-inner">
                                     <p>Sim. O pagamento é processado pela <mark class="faq-mark">InfinitePay</mark>, uma plataforma especializada em pagamentos online. Seus dados de pagamento são processados de forma segura pela plataforma.</p>
                                 </div>
@@ -1608,7 +1470,7 @@
 
                 <span class="reveal inline-flex items-center gap-2 px-4 py-1.5 bg-[#ccff00] text-black font-mono font-bold text-xs uppercase tracking-widest rounded-full mb-7 shadow-[0_0_30px_rgba(204,255,0,0.35)] animate-price-pulse">
                     <span class="w-1.5 h-1.5 rounded-full bg-black animate-pulse"></span>
-                    PRÉ-VENDA ABERTA
+                    À VENDA AGORA
                 </span>
 
                 <h2 class="text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter text-white leading-[0.92] mb-6">
@@ -1617,8 +1479,8 @@
                 </h2>
 
                 <p class="reveal delay-300 text-stone-300 text-base sm:text-sm max-w-xl mb-8 leading-relaxed font-light">
-                    Trata-se de uma pré-venda. Não há previsão de entrega. O livro só será impresso após
-                    atingirmos 100% da meta, e o envio/retirada ocorrerá após o lançamento.
+                    Na página de compra, escolha a opção ideal para você: R$39,90, para retirar pessoalmente,
+                    ou R$52,80, se você prefere receber em casa.
                 </p>
 
                 <!-- Magnetic beam button -->
@@ -1629,7 +1491,7 @@
                             <button class="relative flex h-full w-full items-center overflow-hidden rounded-full bg-stone-900 px-10 py-5 sm:px-12 sm:py-6 transition-all duration-500 group-hover:bg-[#ccff00] text-white">
                                 <span class="absolute top-0 left-0 h-full w-full -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 group-hover:animate-[shimmer_1s_infinite] group-hover:opacity-100"></span>
                                 <span class="relative text-sm sm:text-base font-mono font-bold uppercase tracking-widest text-[#ccff00] group-hover:text-stone-900 transition-colors duration-500 flex items-center gap-3">
-                                    <a href="https://loja.infinitepay.io/alinearaujo-dv/lfh9352-devocional-jesus-e-suficiente">GARANTIR MEU LIVRO</a>
+                                    <a href="https://loja.infinitepay.io/rafaelelian">GARANTIR MEU LIVRO</a>
                                     <iconify-icon icon="solar:arrow-right-linear" class="text-xl transition-transform duration-500 group-hover:translate-x-2"></iconify-icon>
                                 </span>
                             </button>
@@ -1898,7 +1760,9 @@
 
 
             // Run entrance shortly after page init
-            setTimeout(triggerHeroEntrance, 120);
+            // espera a fonte do livro (Anton) para o título não "pular" de tamanho
+            const fontReady = (document.fonts && document.fonts.load) ? Promise.race([document.fonts.load('1em Anton'), new Promise(r => setTimeout(r, 1500))]) : Promise.resolve();
+            fontReady.then(() => setTimeout(triggerHeroEntrance, 120));
 
             // ====================================================
             // 6. SCROLLTRIGGER & VIDEO SCRUB TIMELINE
@@ -1988,24 +1852,6 @@
                 if (document.getElementById('hero-ghost')) {
                     scrubTimeline.to('#hero-ghost', { xPercent: -38, ease: 'none', duration: 0.53 }, 0);
                 }
-            }
-
-            // ====================================================
-            // 7. META PROGRESS BAR & FLOATING PILL ORCHESTRATION
-            // ====================================================
-            const metaBarFill = document.getElementById('meta-progress-fill');
-            if (metaBarFill) {
-                ScrollTrigger.create({
-                    trigger: '#meta-impressao',
-                    start: 'top 75%',
-                    once: true,
-                    onEnter: () => {
-                        gsap.fromTo(metaBarFill,
-                            { width: '0%' },
-                            { width: '10%', duration: 1.5, ease: 'power3.out' }
-                        );
-                    }
-                });
             }
 
             const propositoReveals = document.querySelectorAll('#proposito .reveal');
@@ -2234,28 +2080,6 @@
                         scrollTrigger: { trigger: '#comprar', start: 'top bottom', end: 'bottom top', scrub: true }
                     });
                 }
-            }
-
-            const floatingMetaPill = document.getElementById('floating-meta-bar');
-            if (floatingMetaPill) {
-                ScrollTrigger.create({
-                    trigger: '#meta-impressao',
-                    start: 'bottom 20%',
-                    endTrigger: '#comprar',
-                    end: 'top 60%',
-                    onEnter: () => {
-                        floatingMetaPill.classList.remove('translate-y-28', 'opacity-0', 'pointer-events-none');
-                    },
-                    onLeaveBack: () => {
-                        floatingMetaPill.classList.add('translate-y-28', 'opacity-0', 'pointer-events-none');
-                    },
-                    onEnterBack: () => {
-                        floatingMetaPill.classList.remove('translate-y-28', 'opacity-0', 'pointer-events-none');
-                    },
-                    onLeave: () => {
-                        floatingMetaPill.classList.add('translate-y-28', 'opacity-0', 'pointer-events-none');
-                    }
-                });
             }
 
             // ====================================================
